@@ -1,15 +1,15 @@
 <template>
   <b-col>
-    <h2>Welcome to the Lecturer Index page</h2>
+    <h2>Welcome to the Enrolments page</h2>
 
     <p
-     v-for="lecturer in lecturers"
-     :key="lecturer._id"
+     v-for="enrolment in enrolments"
+     :key="enrolment._id"
     >
   
 
 
-    <router-link :to="{name: 'lecturers_show', params: {id: lecturer.id}}">{{lecturer.name}}</router-link>
+    <router-link :to="{name: 'enrolments_show', params: {id: enrolment.id}}">{{enrolment.date}}</router-link>
     </p>
   </b-col>
 </template>
@@ -18,11 +18,11 @@
 import axios from 'axios'
 
 export default {
-  name: "LecturersIndex",
+  name: "EnrolmentsIndex",
   components: {},
    data() {
        return {
-            lecturers: [],
+            enrolments: [],
        }
    },
    mounted() {
@@ -32,13 +32,13 @@ export default {
        getData() {
           let token = localStorage.getItem('token')
            axios
-            .get(`https://college-api-mo.herokuapp.com/api/lecturers`,
+            .get(`https://college-api-mo.herokuapp.com/api/enrolments`,
            {
                headers: {"Authorization" : `Bearer ${token}`}
            })
            .then(response => {
-               console.log(response.data)
-               this.lecturers = response.data.data
+               console.log("Enollments response :" + response.data.data)
+               this.enrolments = response.data.data
            })
            .catch(error => console.log(error))
        }

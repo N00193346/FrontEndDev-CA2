@@ -18,6 +18,7 @@
           <router-link class="nav-link" to="/">Home</router-link>
           <router-link class="nav-link" :to="{name: 'courses_index'}">Courses</router-link>
           <router-link class="nav-link" :to="{name: 'lecturers_index'}">Lecturers</router-link>
+          <router-link class="nav-link" :to="{name: 'enrolments_index'}">Enrolments</router-link>
         </div>
       </div>
 

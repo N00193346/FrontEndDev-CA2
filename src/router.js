@@ -37,5 +37,17 @@ export default new Router({
       component: () => import("./pages/lecturers/Show.vue"),
     },
     ///////////////////
+    /////LECTURERS/////
+    {
+      path: "/enrolments",
+      name: "enrolments_index",
+      component: () => import("./pages/enrolments/Index.vue"),
+      },
+    {
+      path: "/enrolments/:id",
+      name: "enrolments_show",
+      component: () => import("./pages/enrolments/Show.vue"),
+    },
+      ///////////////////
   ],
 });
