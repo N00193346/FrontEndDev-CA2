@@ -25,5 +25,17 @@ export default new Router({
       component: () => import("./pages/courses/Show.vue"),
     },
     ///////////////////
+    /////LECTURERS/////
+    {
+      path: "/lecturers",
+      name: "lecturers_index",
+      component: () => import("./pages/lecturers/Index.vue"),
+    },
+    {
+      path: "/lecturers/:id",
+      name: "lecturers_show",
+      component: () => import("./pages/lecturers/Show.vue"),
+    },
+    ///////////////////
   ],
 });

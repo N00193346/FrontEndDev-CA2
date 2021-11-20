@@ -17,6 +17,7 @@
         <div class="navbar-nav">
           <router-link class="nav-link" to="/">Home</router-link>
           <router-link class="nav-link" :to="{name: 'courses_index'}">Courses</router-link>
+          <router-link class="nav-link" :to="{name: 'lecturers_index'}">Lecturers</router-link>
         </div>
       </div>
 
