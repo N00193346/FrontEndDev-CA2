@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <br /><br />
-    <h6>&copy; FestivalCloud, 2021</h6>
+    <h6>&copy; VueCollege, 2021</h6>
   </footer>
 </template>
 

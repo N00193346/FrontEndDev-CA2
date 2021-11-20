@@ -1,6 +1,6 @@
 <template>
   <b-col>
-    <h2>Welcome to the Cloud Festivals Website</h2>
+    <h2>Welcome to the College thing</h2>
 
     <div v-if="!loggedIn">
     <h4>Email</h4>
@@ -12,6 +12,7 @@
      <button @click="login(form)">Submit</button>
     </div>
     <p v-else>
+      
       You are logged in 
     </p>
   </b-col>
@@ -28,7 +29,7 @@ export default {
   data() {
     return {
       form : {
-        email: "admin@festivals.ie",
+        email: "sam@bloggs.com",
         password: "secret",
       },
   

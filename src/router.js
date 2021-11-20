@@ -13,16 +13,16 @@ export default new Router({
       name: "home",
       component: Home,
     },
-    /////FESTIVALS/////
+    /////COURSES/////
     {
-      path: "/festivals",
-      name: "festivals_index",
-      component: () => import("./pages/festivals/Index.vue"),
+      path: "/courses",
+      name: "courses_index",
+      component: () => import("./pages/courses/Index.vue"),
     },
     {
-      path: "/festivals/:id",
-      name: "festivals_show",
-      component: () => import("./pages/festivals/Show.vue"),
+      path: "/courses/:id",
+      name: "courses_show",
+      component: () => import("./pages/courses/Show.vue"),
     },
     ///////////////////
   ],
