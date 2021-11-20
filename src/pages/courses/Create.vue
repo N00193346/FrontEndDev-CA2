@@ -9,13 +9,13 @@
      <input type="text" v-model="form.code" />
      <br>
       <h4>Description</h4>
-     <input type="description" v-model="form.description" />
+     <input type="text" v-model="form.description" />
      <br>
       <h4>Points</h4>
-     <input type="points" v-model="form.points" />
+     <input type="number" v-model="form.points" />
      <br>
     <h4>Level</h4>
-     <input type="level" v-model="form.level" />
+     <input type="number" v-model="form.level" />
      <br>
      <button @click="login()">Submit</button>
   

@@ -41,8 +41,13 @@ export default new Router({
       name: "lecturers_show",
       component: () => import("./pages/lecturers/Show.vue"),
     },
+    {
+      path: "/lecturers/create",
+      name: "lecturers_create",
+      component: () => import("./pages/lecturers/Create.vue"),
+    },
     ///////////////////
-    /////LECTURERS/////
+    /////ENROLLMENTS/////
     {
       path: "/enrolments",
       name: "enrolments_index",

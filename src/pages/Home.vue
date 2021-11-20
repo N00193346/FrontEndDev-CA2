@@ -16,6 +16,8 @@
       You are logged in 
       <br>
        <router-link :to="{name: 'courses_create'}">Create Course</router-link>
+       <br>
+       <router-link :to="{name: 'lecturers_create'}">Create Lectuer</router-link>
     </p>
   </b-col>
 </template>
