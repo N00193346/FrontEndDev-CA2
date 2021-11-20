@@ -15,7 +15,7 @@
      <input type="text" v-model="form.phone" />
      <br>
 
-     <button @click="login()">Submit</button>
+     <button @click="createLecturer()">Submit</button>
   
   </b-col>
 </template>
@@ -38,7 +38,7 @@ export default {
   },
 
    methods: {
-       login(){
+       createLecturer(){
           let token = localStorage.getItem('token')
         axios.post(`https://college-api-mo.herokuapp.com/api/lecturers`,
       {

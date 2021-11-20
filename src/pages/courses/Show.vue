@@ -9,6 +9,7 @@
         {{ course.description}}
     </p>
 
+    <router-link :to="{name: 'courses_edit'}"><button type="button" class="btn btn-primary">Edit</button></router-link>
     <button @click="deleteCourse()" type="button" class="btn btn-danger">Delete Course</button>
   </b-col>
 </template>

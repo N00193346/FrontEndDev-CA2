@@ -29,6 +29,11 @@ export default new Router({
       name: "courses_create",
       component: () => import("./pages/courses/Create.vue"),
     },
+    {
+      path: "/courses/edit/:id",
+      name: "courses_edit",
+      component: () => import("./pages/courses/Edit.vue"),
+    },
     ///////////////////
     /////LECTURERS/////
     {

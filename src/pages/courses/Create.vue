@@ -17,7 +17,7 @@
     <h4>Level</h4>
      <input type="number" v-model="form.level" />
      <br>
-     <button @click="login()">Submit</button>
+     <button @click="createCourse()">Submit</button>
   
   </b-col>
 </template>
@@ -41,7 +41,7 @@ export default {
   },
 
    methods: {
-       login(){
+       createCourse(){
           let token = localStorage.getItem('token')
         axios.post(`https://college-api-mo.herokuapp.com/api/courses`,
       {
