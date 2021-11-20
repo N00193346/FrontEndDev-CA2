@@ -14,6 +14,8 @@
     <p v-else>
       
       You are logged in 
+      <br>
+       <router-link :to="{name: 'courses_create'}">Create Course</router-link>
     </p>
   </b-col>
 </template>

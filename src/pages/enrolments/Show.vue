@@ -41,7 +41,7 @@ export default {
            })
            .then(response => {
                console.log(response)
-               this.enrolment= response.data.data
+               this.enrolment = response.data.data
            })
            .catch(error => {
              console.log(error)
