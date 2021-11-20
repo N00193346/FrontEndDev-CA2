@@ -1,28 +1,44 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <MyNavBar />
+    <b-container>
+      <br />
+      <b-row>
+        <router-view  />
+      </b-row>
+      <MyFooter />
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyNavBar from "@/components/MyNavBar.vue"
+import MyFooter from "@/components/MyFooter.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    MyNavBar,
+    MyFooter
+  },
+  data() {
+    return{
+
+    }
+  },
+  created(){
+   if (localStorage.getItem('token')) {
+      this.$store.commit('SET_LOGGED_IN_STATUS', true)       
+   } else { 
+     this.$store.commit('SET_LOGGED_IN_STATUS', false)       
+     }
+  },
+  methods: {
+ 
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
