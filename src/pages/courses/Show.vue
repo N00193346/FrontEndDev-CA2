@@ -60,10 +60,9 @@ export default {
            })
            .catch(error => {
              console.log(error)
-            //  localStorage.removeItem('token')
+             localStorage.removeItem('token')
              })
        },
-
    },
 
   };

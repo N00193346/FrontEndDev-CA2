@@ -14,6 +14,8 @@
         <br>
         {{ lecturer.phone }}
     </p>
+
+    <button @click="deleteLecturer()" type="button" class="btn btn-danger">Delete Lecturer</button>
   </b-col>
 </template>
 
@@ -29,10 +31,10 @@ export default {
        }
    },
    mounted() {
-       this.getData()
+       this.getLecturer()
    },
    methods: {
-       getData() {
+       getLecturer() {
 
          let token = localStorage.getItem('token')
            axios
@@ -49,7 +51,24 @@ export default {
              localStorage.removeItem('token')
             //  this.$emit('invalid-token')
              })
-       }
+       },
+            deleteLecturer() {
+         let token = localStorage.getItem('token')
+           axios
+           .delete(`https://college-api-mo.herokuapp.com/api/lecturers/${this.lecturer.id}`,
+           {
+               headers: {"Authorization" : `Bearer ${token}`}
+           })
+           .then(response => {
+               console.log(response)
+                console.log("Lecturer deleted")
+               
+           })
+           .catch(error => {
+             console.log(error)
+             localStorage.removeItem('token')
+             })
+       },
    },
 
   };
