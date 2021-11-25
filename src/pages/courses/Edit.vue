@@ -25,7 +25,7 @@
 
 <script>
 // import axios from 'axios'
-import { mapActions, mapState } from 'vuex'
+import { mapActions} from 'vuex'
 
 export default {
   name: "CoursesEdit",
@@ -33,13 +33,13 @@ export default {
    data() {
        return {
             course: {},
-            form : {
-              title: "",
-              code: "",
-              description: "",
-              points: "",
-              level: "",
-      },
+      //       form : {
+      //         title: "",
+      //         code: "",
+      //         description: "",
+      //         points: "",
+      //         level: "",
+      // },
        }
    },
    mounted() {
@@ -47,7 +47,9 @@ export default {
       
    },
     computed: {
-    ...mapState(['form'])
+      form() {
+        return this.$store.state.course
+      }
   },
    methods: {
      ...mapActions(['getCourse']),
