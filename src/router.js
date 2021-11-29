@@ -51,6 +51,11 @@ export default new Router({
       name: "lecturers_show",
       component: () => import("./pages/lecturers/Show.vue"),
     },
+    {
+      path: "/lecturers/edit/:id",
+      name: "lecturers_edit",
+      component: () => import("./pages/lecturers/Edit.vue"),
+    },
     ///////////////////
     /////ENROLLMENTS/////
     {

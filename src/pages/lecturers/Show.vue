@@ -14,7 +14,8 @@
         <br>
         {{ lecturer.phone }}
     </p>
-
+    
+     <router-link :to="{name: 'lecturers_edit'}"><button type="button" class="btn btn-primary">Edit</button></router-link>
     <button @click="deleteLecturer()" type="button" class="btn btn-danger">Delete Lecturer</button>
   </b-col>
 </template>
