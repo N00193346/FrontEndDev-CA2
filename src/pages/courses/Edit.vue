@@ -1,97 +1,95 @@
 <template>
   <b-col>
-    <h2>Edit Courses page</h2>
+    <h2>Create Course</h2>
 
-     <h4>Title</h4>
-   <!-- <form> -->
-    <input type="text" v-model="form.title"  >
+    <h4>Title</h4>
+    <input type="text" v-model="form.title" />
     <br>
      <h4>Code</h4>
-     <input type="text" v-model="form.code" :placeholder="this.course.code"/>
+     <input type="text" v-model="form.code" />
      <br>
       <h4>Description</h4>
-     <input type="text" v-model="form.description" :placeholder="this.course.description"/>
+     <input type="text" v-model="form.description" />
      <br>
       <h4>Points</h4>
-     <input type="number" v-model="form.points" :placeholder="this.course.points"/>
+     <input type="number" v-model="form.points" />
      <br>
     <h4>Level</h4>
-     <input type="number" v-model="form.level" :placeholder="this.course.level"/>
+     <input type="number" v-model="form.level" />
      <br>
-     <button @click="log()">Save</button>
-   <!-- </form> -->
+     <button @click="editCourse()">Submit</button>
+  
   </b-col>
 </template>
 
 <script>
-// import axios from 'axios'
-import { mapActions, mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: "CoursesEdit",
   components: {},
-   data() {
-       return {
-            course: {},
-            form : {
-              title: "",
-              code: "",
-              description: "",
-              points: "",
-              level: "",
+  data() {
+    return {
+      form : {
+        title: "",
+        code: "",
+        description: "",
+        points: "",
+        level: "",
       },
-       }
-   },
-   mounted() {
-       this.getCourse(this.$route.params.id)
-      
-   },
-    computed: {
-    ...mapState(['form'])
+    }
+  },
+  mounted() {
+      this.getCourse()
   },
    methods: {
-     ...mapActions(['getCourse']),
-      //  getCourse() {
+      getCourse() {
 
-      //    let token = localStorage.getItem('token')
-      //      axios
-      //      .get(`https://college-api-mo.herokuapp.com/api/courses/${this.$route.params.id}`,
-      //      {
-      //          headers: {"Authorization" : `Bearer ${token}`}
-      //      })
-      //      .then(response => {
-      //          console.log(response)
-      //          this.course = response.data.data
-      //      })
-      //      .catch(error => {
-      //        console.log(error)
-      //       //  localStorage.removeItem('token')
-      //       //  this.$emit('invalid-token')
-      //        })
-      //  },
-      //   updateCourse() {
-      //    let token = localStorage.getItem('token')
-      //      axios
-      //      .delete(`https://college-api-mo.herokuapp.com/api/courses/${this.course.id}`,
-      //      {
-      //          headers: {"Authorization" : `Bearer ${token}`}
-      //      })
-      //      .then(response => {
-      //          console.log(response)
-      //           console.log("Course deleted")
-               
-      //      })
-      //      .catch(error => {
-      //        console.log(error)
-      //        localStorage.removeItem('token')
-      //        })
-      //  },
-      //  log(){
-      //    console.log("title: " + this.form.title)
-      //  }
+         let token = localStorage.getItem('token')
+           axios
+           .get(`https://college-api-mo.herokuapp.com/api/courses/${this.$route.params.id}`,
+           {
+               headers: {"Authorization" : `Bearer ${token}`}
+           })
+           .then(response => {
+               console.log(response)
+              this.form.title = response.data.data.title
+              this.form.code = response.data.data.code
+              this.form.description = response.data.data.description
+              this.form.points = response.data.data.points
+              this.form.level = response.data.data.level
+           })
+           .catch(error => {
+             console.log(error)
+             localStorage.removeItem('token')
+            //  this.$emit('invalid-token')
+             })
+       },
+          editCourse(){
+          let token = localStorage.getItem('token')
+        axios.put(`https://college-api-mo.herokuapp.com/api/courses/${this.$route.params.id}`,
+      {
+          title: this.form.title, 
+          code: this.form.code,
+          description: this.form.description,
+          points: this.form.points,
+          level: this.form.level,
+        },
+          {
+               headers: {"Authorization" : `Bearer ${token}`}
+           }
+        )
+              .then(response => {
+               console.log(response.data)
+            
+          
+              })
+              .catch(error => {
+                console.log(error)
+                console.log(error.response.data.message)
+              })
+    }
    },
-  
-
 
   };
 </script>

@@ -20,14 +20,14 @@ export default new Router({
       component: () => import("./pages/courses/Index.vue"),
     },
     {
-      path: "/courses/:id",
-      name: "courses_show",
-      component: () => import("./pages/courses/Show.vue"),
-    },
-    {
       path: "/courses/create",
       name: "courses_create",
       component: () => import("./pages/courses/Create.vue"),
+    },
+    {
+      path: "/courses/:id",
+      name: "courses_show",
+      component: () => import("./pages/courses/Show.vue"),
     },
     {
       path: "/courses/edit/:id",
@@ -42,14 +42,14 @@ export default new Router({
       component: () => import("./pages/lecturers/Index.vue"),
     },
     {
-      path: "/lecturers/:id",
-      name: "lecturers_show",
-      component: () => import("./pages/lecturers/Show.vue"),
-    },
-    {
       path: "/lecturers/create",
       name: "lecturers_create",
       component: () => import("./pages/lecturers/Create.vue"),
+    },
+    {
+      path: "/lecturers/:id",
+      name: "lecturers_show",
+      component: () => import("./pages/lecturers/Show.vue"),
     },
     ///////////////////
     /////ENROLLMENTS/////
