@@ -7,12 +7,26 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loggedIn: false,
+    course: {
+      title: "",
+      code: "",
+      description: "",
+      points: "",
+      level: "",
+    },
   },
   getters: {},
   mutations: {
     SET_LOGGED_IN_STATUS(state, loggedIn) {
       state.loggedIn = loggedIn;
     },
+    // SET_COURSE(state, title, code, description, points, level) {
+    //   state.course.title = title;
+    //   state.course.code = code;
+    //   state.course.description = description;
+    //   state.course.points = points;
+    //   state.course.level = level;
+    // },
   },
   actions: {
     login(context, credentials) {

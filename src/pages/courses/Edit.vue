@@ -23,24 +23,32 @@
 </template>
 
 <script>
+// import axios from 'axios'
 import axios from 'axios'
 
 export default {
   name: "CoursesEdit",
   components: {},
-  data() {
-    return {
-      form : {
-        title: "",
-        code: "",
-        description: "",
-        points: "",
-        level: "",
-      },
-    }
-  },
-  mounted() {
-      this.getCourse()
+   data() {
+       return {
+            course: {},
+      //       form : {
+      //         title: "",
+      //         code: "",
+      //         description: "",
+      //         points: "",
+      //         level: "",
+      // },
+       }
+   },
+   mounted() {
+       this.getCourse(this.$route.params.id)
+      
+   },
+    computed: {
+      form() {
+        return this.$store.state.course
+      }
   },
    methods: {
       getCourse() {
