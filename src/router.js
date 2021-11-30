@@ -63,6 +63,11 @@ export default new Router({
       name: "enrolments_index",
       component: () => import("./pages/enrolments/Index.vue"),
       },
+      {
+        path: "/enrolments/create",
+        name: "enrolments_create",
+        component: () => import("./pages/enrolments/Create.vue"),
+      },
     {
       path: "/enrolments/:id",
       name: "enrolments_show",

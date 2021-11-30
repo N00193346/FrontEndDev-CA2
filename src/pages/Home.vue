@@ -18,6 +18,9 @@
        <router-link :to="{name: 'courses_create'}">Create Course</router-link>
        <br>
        <router-link :to="{name: 'lecturers_create'}">Create Lectuer</router-link>
+          <br>
+       <router-link :to="{name: 'enrolments_create'}">Create Enrolment</router-link>
+
     </p>
   </b-col>
 </template>
