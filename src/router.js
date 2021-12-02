@@ -73,6 +73,11 @@ export default new Router({
       name: "enrolments_show",
       component: () => import("./pages/enrolments/Show.vue"),
     },
+    {
+      path: "/enrolments/edit/:id",
+      name: "enrolments_edit",
+      component: () => import("./pages/enrolments/Edit.vue"),
+    },
       ///////////////////
   ],
 });
