@@ -1,5 +1,5 @@
 <template>
-  <b-col>
+  <v-content>
     <h2>Welcome to the College thing</h2>
 
     <div v-if="!loggedIn">
@@ -22,7 +22,7 @@
        <router-link :to="{name: 'enrolments_create'}">Create Enrolment</router-link>
 
     </p>
-  </b-col>
+  </v-content>
 </template>
 
 <script>

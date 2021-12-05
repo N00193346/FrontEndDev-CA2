@@ -1,15 +1,19 @@
 
 <template>
-  <div>
+<v-app>
+ 
     <MyNavBar />
-    <b-container>
+    <!-- <b-container>
       <br />
-      <b-row>
+      <b-row> -->
+        <v-content>
         <router-view  />
-      </b-row>
+        </v-content>
+      <!-- </b-row> -->
       <MyFooter />
-    </b-container>
-  </div>
+    <!-- </b-container> -->
+  
+</v-app>
 </template>
 
 <script>
