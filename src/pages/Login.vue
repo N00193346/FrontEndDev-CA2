@@ -1,13 +1,29 @@
 <template>
   <v-container>
-    <h1>Home</h1>
-    <h3>Yo</h3>
+    <h1>Login</h1>
+    <!-- <h2>Welcome to the College thing</h2>
+
+    <div v-if="!loggedIn">
+    <h4>Email</h4>
+    <input type="email" v-model="form.email" />
     <br>
-    <h3>Welcome to the college thing</h3>
-   
- 
- <div v-if="!loggedIn">
-    <h3>Please Sign in</h3>
+     <h4>Password</h4>
+     <input type="password" v-model="form.password" />
+     <br>
+     <button @click="login(form)">Submit</button>
+    </div>
+    <p v-else>
+      
+      You are logged in 
+      <br>
+       <router-link :to="{name: 'courses_create'}">Create Course</router-link>
+       <br>
+       <router-link :to="{name: 'lecturers_create'}">Create Lectuer</router-link>
+          <br>
+       <router-link :to="{name: 'enrolments_create'}">Create Enrolment</router-link>
+
+    </p> -->
+    <div v-if="!loggedIn">
       
      <v-form
     ref="form"
@@ -45,9 +61,9 @@
   </v-form>
 
   </div>
-    <div v-else>
+    <p v-else>
       
-     <h3>You are signed in </h3>
+      You already logged in 
       <br>
        <router-link :to="{name: 'courses_create'}">Create Course</router-link>
        <br>
@@ -55,8 +71,8 @@
           <br>
        <router-link :to="{name: 'enrolments_create'}">Create Enrolment</router-link>
 
-    </div> 
-     
+    </p> 
+
   </v-container>
 </template>
 
@@ -64,7 +80,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: "Home",
+  name: "Login",
   components: {
 
   },

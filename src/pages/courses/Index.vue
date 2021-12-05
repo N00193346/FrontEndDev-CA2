@@ -1,5 +1,8 @@
 <template>
-  <b-col>
+<div>
+  <h1 class="subheading">Courses </h1>
+  <v-container class="my-5">
+  <!-- <b-col>
     <h2>Welcome to the Course Index page</h2>
 
     <p
@@ -11,7 +14,26 @@
 
     <router-link :to="{name: 'courses_show', params: {id: course.id}}">{{course.title}}</router-link>
     </p>
-  </b-col>
+  </b-col> -->
+
+<v-layout row wrap>
+  <v-flex sm6 lg4 v-for="course in courses" :key="course._id">
+    <router-link :to="{name: 'courses_show', params: {id: course.id}}">
+    <v-card   
+    elevation="2"
+    outlined  
+    class="text-center ma-3">
+
+      <v-card-text>
+        <div class="heading">{{course.title}}</div>
+   
+      </v-card-text>
+    </v-card>
+    </router-link>
+  </v-flex>
+</v-layout>
+  </v-container>
+</div>
 </template>
 
 <script>

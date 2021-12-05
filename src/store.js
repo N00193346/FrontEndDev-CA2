@@ -38,6 +38,7 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit("SET_LOGGED_IN_STATUS", true);
           localStorage.setItem("token", response.data.token);
+          
         })
         .catch((error) => {
           console.log(error);

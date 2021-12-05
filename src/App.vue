@@ -6,7 +6,7 @@
     <!-- <b-container>
       <br />
       <b-row> -->
-        <v-content>
+        <v-content class="background">
         <router-view  />
         </v-content>
       <!-- </b-row> -->
@@ -42,5 +42,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.background{
+  background-color: #edf0f2;
+}
 </style>

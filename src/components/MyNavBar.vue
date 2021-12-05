@@ -1,6 +1,6 @@
 <template>
 <nav>
-   <v-toolbar flat app
+   <v-toolbar flat app clipped-left
       color="primary"
       dark
     >
@@ -9,13 +9,6 @@
    <span>College Vue</span>
    
    </v-toolbar-title>
-
-      <div class="d-flex align-center">
-        <router-link class="nav-link " to="/">Home</router-link>
-          <router-link class="nav-link " :to="{name: 'courses_index'}">Courses</router-link>
-          <router-link class="nav-link " :to="{name: 'lecturers_index'}">Lecturers</router-link>
-          <router-link class="nav-link " :to="{name: 'enrolments_index'}">Enrolments</router-link>
-      </div>
 
       <v-spacer></v-spacer>
 
@@ -26,9 +19,16 @@
       >
        Logout
       </v-btn>
+        <v-btn 
+      v-if="!$store.state.loggedIn" @click="logIn()" 
+        text
+        color="secondary"
+      >
+       LogIn
+      </v-btn>
    </v-toolbar>
 
-    <v-navigation-drawer app v-model="drawer"  class="primary">
+    <v-navigation-drawer temporary  clipped disable-resize-watcher app v-model="drawer"  class="primary">
         <v-list>
           <v-list-item v-for="link in links" :key="link.text" router :to="{name: link.routeName}">
             <v-list-item-action>
@@ -63,6 +63,9 @@ export default {
   methods: {
     logOut() {
     this.$store.dispatch('logout')
+    },
+    logIn() {
+    this.$router.push('login')
     }
   }
 };
