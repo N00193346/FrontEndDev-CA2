@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">VueCollege</a>
       <button
@@ -24,7 +24,33 @@
 
       <button v-if="$store.state.loggedIn" @click="logOut()" class="btn btn-outline-info my-2 my-sm-0 flex-right btn-sm">Logout</button>
     </div>
-  </nav>
+  </nav> -->
+
+   <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+ <span class="mr-2">College Vue</span>
+
+      <div class="d-flex align-center">
+        <router-link class="nav-link" to="/">Home</router-link>
+          <router-link class="nav-link" :to="{name: 'courses_index'}">Courses</router-link>
+          <router-link class="nav-link" :to="{name: 'lecturers_index'}">Lecturers</router-link>
+          <router-link class="nav-link" :to="{name: 'enrolments_index'}">Enrolments</router-link>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+      v-if="$store.state.loggedIn" @click="logOut()" 
+        text
+        color="secondary"
+      >
+       Logout
+      </v-btn>
+    </v-app-bar>
+
 </template>
 
 <script>

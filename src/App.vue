@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <MyNavBar />
@@ -14,7 +15,6 @@
 <script>
 import MyNavBar from "@/components/MyNavBar.vue"
 import MyFooter from "@/components/MyFooter.vue"
-
 export default {
   name: "App",
   components: {
@@ -23,7 +23,6 @@ export default {
   },
   data() {
     return{
-
     }
   },
   created(){
@@ -40,5 +39,4 @@ export default {
 </script>
 
 <style>
-
 </style>
