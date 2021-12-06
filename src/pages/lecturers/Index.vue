@@ -91,3 +91,10 @@ export default {
 
   };
 </script>
+<style scoped>
+.textStyle{
+  font-weight: bold;
+  text-decoration: none;
+  
+}
+</style>

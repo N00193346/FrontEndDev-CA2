@@ -13,7 +13,35 @@
     <!-- <ImageHero :heroImage="heroImage"/> -->
 </v-layout>
 
-
+<v-layout row wrap>
+  <v-flex sm6 lg6 v-for="course in courses" :key="course._id">
+    <router-link style="text-decoration: none; color: inherit;"
+     :to="{name: 'courses_show', params: {id: course.id}}">
+    <v-card   
+    elevation="2"
+    outlined  
+    class=" ma-3">
+      <v-card-title>
+        <div class="textStyle">{{course.title}}</div>
+      </v-card-title>
+      <div class ="d-flex  justify-space-between">
+            <v-card-text  >
+            <div class="textStyle">Code:</div>
+            {{course.code}}
+            </v-card-text>
+             <v-card-text >
+            <div class="textStyle">Points:</div>
+            {{course.points}}
+            </v-card-text>
+             <v-card-text  >
+            <div class="textStyle">Level:</div>
+            {{course.level}}
+            </v-card-text>
+      </div>
+    </v-card>
+    </router-link>
+  </v-flex>
+</v-layout>
   </v-container>
 </div>
 </template>
@@ -71,7 +99,7 @@ export default {
   };
 </script>
 <style scoped>
-.textStyle, .textStyle:hover{
+.textStyle{
   font-weight: bold;
   text-decoration: none;
   
