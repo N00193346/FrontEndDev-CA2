@@ -10,50 +10,24 @@
       height="350"
       class=" ma-3"
     />
+    <!-- <ImageHero :heroImage="heroImage"/> -->
 </v-layout>
 
-<v-layout row wrap>
-  <v-flex sm6 lg6 v-for="course in courses" :key="course._id">
-    <router-link :to="{name: 'courses_show', params: {id: course.id}}">
-    <v-card   
-    elevation="2"
-    outlined  
-    class=" ma-3">
-      <v-card-title>
-        <div class="textStyle">{{course.title}}</div>
-      </v-card-title>
-      <div class ="d-flex  justify-space-between">
-            <v-card-text  >
-            <div class="textStyle">Code:</div>
-            {{course.code}}
-            </v-card-text>
-             <v-card-text >
-            <div class="textStyle">Points:</div>
-            {{course.points}}
-            </v-card-text>
-             <v-card-text  >
-            <div class="textStyle">Level:</div>
-            {{course.level}}
-            </v-card-text>
-      </div>
-    </v-card>
-    </router-link>
-  </v-flex>
-</v-layout>
+
   </v-container>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
-// import Hero from "@/components/Hero";
+// import ImageHero from "@/components/ImageHero";
 const UNSPLASH_URL = "https://api.unsplash.com/search/photos/?client_id=XhqXA2Jig1drfBj96ploqpKdat9N94vn0GPzbrYjwK8&query=course";
 
 
 export default {
   name: "CoursesIndex",
   components: {
-    // Hero,
+    // ImageHero,
   },
    data() {
        return {
@@ -97,7 +71,9 @@ export default {
   };
 </script>
 <style scoped>
-.textStyle{
+.textStyle, .textStyle:hover{
   font-weight: bold;
+  text-decoration: none;
+  
 }
 </style>

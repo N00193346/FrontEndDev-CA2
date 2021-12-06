@@ -1,25 +1,25 @@
 <template>
-<div>
    <v-container fluid>
     <v-row justify="space-around">
       <v-col cols="5">
         <v-img
-          :src="heroImage.name"
-          aspect-ratio="1.7"
-        ></v-img>
+          :src="heroImage"
+          width= 100%;
+          height="350"
+          class=" ma-3"
+        />
       </v-col>
     </v-row>
    </v-container>
-</div>
 </template>
 
 <script>
-    export default {
-        name: 'Hero',
+   export default {
+        name: "Hero",
         props: {
-           heroImage: Object
-        }
-    }
+           heroImage: String,
+        },
+    };
 </script>
 <style scoped>
 
