@@ -1,4 +1,8 @@
 <template>
+    <!-- <v-menu>
+                <v-text-field :value ="form.date" slot ="activator" label="Date" prepend-icon="date_range"></v-text-field>
+                <v-date-picker v-model="form.date"></v-date-picker>
+          </v-menu> -->
   <b-col>
     <h2>Create Enrolment</h2>
 

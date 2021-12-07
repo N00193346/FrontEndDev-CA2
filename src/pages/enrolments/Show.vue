@@ -26,6 +26,8 @@
             {{ enrolment.course_id}} ({{enrolment.course.title}})
           <div class="subheading">Lecturer Id:</div>
             {{ enrolment.lecturer_id}} ({{enrolment.lecturer.name}})
+              <div class="subheading">Status:</div>
+            {{ enrolment.status}} 
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>

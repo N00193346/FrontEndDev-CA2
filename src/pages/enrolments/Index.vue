@@ -42,10 +42,7 @@
     </v-card-subtitle>
 
     <v-card-actions>
-    
       <v-spacer></v-spacer>
-
-
     </v-card-actions>
       </router-link>
 
