@@ -14,6 +14,7 @@
           <v-text-field type="number" label="Points" v-model="form.points" prepend-icon="mdi-chart-line" :rules="inputRules"></v-text-field>
           <v-text-field type="number" label="Level" v-model="form.level" prepend-icon="mdi-equalizer" :rules="inputRules"></v-text-field>
           <v-btn flat class="secondary mt-3" @click="submit + createCourse()">Create </v-btn>  
+            <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
         </v-form>
       </v-card-text>
   
@@ -69,6 +70,8 @@ export default {
         )
               .then(response => {
                console.log(response.data)
+              this.$router.push({name: 'courses_index'})
+              this.displayCourseSB()
             
           
               })
@@ -77,7 +80,18 @@ export default {
                 console.log(error.response.data.message)
               })
     }
+     
    },
+         clear() {
+        this.form.title = '', 
+        this.form.code = '',
+        this.form.description = '',
+        this.form.points = '',
+        this.form.level = ''
+        },
+     displayCourseSB(){
+             this.$store.dispatch('displayCourseSnackBar')
+        }
 }
 };
 </script>

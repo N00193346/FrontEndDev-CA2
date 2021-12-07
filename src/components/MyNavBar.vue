@@ -6,6 +6,11 @@
     <v-btn color="secondary" class="ml-3" @click="removeSnackbarLecturer()">Close</v-btn>
   </v-snackbar>
 
+   <v-snackbar v-model="$store.state.snackbarCourse" color="secondary" :timeout="5000" top >
+    <span>Course added to the database</span>
+    <v-btn color="secondary" class="ml-3" @click="removeSnackbarCourse()">Close</v-btn>
+  </v-snackbar>
+
    <v-toolbar flat app clipped-left
       color="primary"
       dark
@@ -79,6 +84,12 @@ export default {
     },
     removeSnackbarLecturer(){
       this.$store.dispatch('removeLecturerSnackBar')
+    },
+    displaySnackbarCourse(){
+      this.$store.dispatch('displayCourseSnackBar')
+    },
+    removeSnackbarCourse(){
+      this.$store.dispatch('removeCourseSnackBar')
     }
   }
 };
