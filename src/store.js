@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     loggedIn: false,
+    snackbarLecturer: false,
     course: {
       title: "",
       code: "",
@@ -14,6 +15,8 @@ export default new Vuex.Store({
       points: "",
       level: "",
     },
+    
+
   },
   getters: {},
   mutations: {
@@ -27,6 +30,9 @@ export default new Vuex.Store({
     //   state.course.points = points;
     //   state.course.level = level;
     // },
+    SET_SNACKBAR_LECTURER_STATUS(state, snackbarLecturer){
+      state.snackbarLecturer = snackbarLecturer
+    }
   },
   actions: {
     login(context, credentials) {
@@ -49,5 +55,11 @@ export default new Vuex.Store({
       localStorage.removeItem("token");
       context.commit("SET_LOGGED_IN_STATUS", false);
     },
+    displayLecturerSnackBar(context){
+      context.commit("SET_SNACKBAR_LECTURER_STATUS", true);
+    },
+    removeLecturerSnackBar(context){
+      context.commit("SET_SNACKBAR_LECTURER_STATUS", false);
+    }
   },
 });

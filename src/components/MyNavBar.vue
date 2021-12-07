@@ -1,5 +1,11 @@
 <template>
 <nav>
+
+  <v-snackbar v-model="$store.state.snackbarLecturer" color="secondary" :timeout="5000" top >
+    <span>Lecturer added to the database</span>
+    <v-btn color="secondary" class="ml-3" @click="removeSnackbarLecturer()">Close</v-btn>
+  </v-snackbar>
+
    <v-toolbar flat app clipped-left
       color="primary"
       dark
@@ -28,7 +34,7 @@
       </v-btn>
    </v-toolbar>
 
-    <v-navigation-drawer temporary  clipped disable-resize-watcher app v-model="drawer"  class="primary">
+    <v-navigation-drawer temporary clipped disable-resize-watcher app v-model="drawer"  class="primary">
         <v-list>
           <v-list-item v-for="link in links" :key="link.text" router :to="{name: link.routeName}">
             <v-list-item-action>
@@ -57,6 +63,7 @@ export default {
         {icon: 'mdi-account-tie', text: 'Lecturers', routeName: 'lecturers_index'},
         {icon: 'mdi-clipboard-list-outline', text: 'Enrolments', routeName: 'enrolments_index'},
       ],
+      
 
     }
   },
@@ -66,6 +73,12 @@ export default {
     },
     logIn() {
     this.$router.push('login')
+    },
+    displaySnackbarLecturer(){
+      this.$store.dispatch('displayLecturerSnackBar')
+    },
+    removeSnackbarLecturer(){
+      this.$store.dispatch('removeLecturerSnackBar')
     }
   }
 };
