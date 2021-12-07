@@ -23,15 +23,15 @@
 
 <v-layout row wrap>
   <v-flex sm6 lg6 v-for="enrolment in enrolments" :key="enrolment._id">
-    <!-- <router-link style="text-decoration: none; color: inherit;"
-     :to="{name: 'enrolments_show', params: {id: enrolment.id}}"> -->
+  
   <v-card
       elevation="2"
       outlined  
       class=" ma-3"
     
   >
-   
+     <router-link style="text-decoration: none; color: inherit;"
+     :to="{name: 'enrolments_show', params: {id: enrolment.id}}">
     <v-card-title  class ="d-flex  justify-space-between">
       {{enrolment.course.title}}
       <v-chip small :class="`${enrolment.status}`">{{enrolment.status}}</v-chip>
@@ -47,6 +47,7 @@
 
 
     </v-card-actions>
+      </router-link>
 
     <v-expansion-panels>
     <v-expansion-panel>
@@ -73,7 +74,7 @@
     </v-expansion-panel>
   </v-expansion-panels>
   </v-card>
-  <!-- </router-link> -->
+
   </v-flex>
 </v-layout>
 

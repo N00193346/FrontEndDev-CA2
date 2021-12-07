@@ -1,17 +1,93 @@
 <template>
-  <b-col>
-    <h2>ShowCourses page</h2>
+  <div>
+  <v-container class="my-5">
 
-    <p>
-        {{ course.title}}
-    </p>
+  <!-- <v-layout row wrap>
+  <h1 class="heading">{{ course.title}}</h1>
+  </v-layout>
+
+<v-layout row wrap>
+  <p class="large">ID:</p>{{ course.id}}
+  </v-layout>
+<v-layout row wrap>
+  <h4 class="subheading">Code:</h4>{{ course.code}}
+  </v-layout>
+
+   <v-layout row wrap>
+  <h4 class="subheading">Points:</h4>{{ course.points}}
+  </v-layout>
+
+  <v-layout row wrap>
+  <h4 class="subheading">Level:</h4>{{ course.level}}
+  </v-layout>
+
+
+ 
       <p>
         {{ course.description}}
     </p>
 
     <router-link :to="{name: 'courses_edit'}"><button type="button" class="btn btn-primary">Edit</button></router-link>
     <button @click="deleteCourse()" type="button" class="btn btn-danger">Delete Course</button>
-  </b-col>
+   -->
+
+    <v-card
+    class="ma-3"
+     elevation="5"
+    outlined
+
+  >
+    <v-list-item three-line>
+      <v-list-item-content>
+        <v-list-item-title class="text-h3 mb-1">
+         {{ course.title}}
+        </v-list-item-title>
+        <v-list-item-subtitle class="fontSize">
+          <div class="subheading">Id:</div>
+            {{ course.id}}
+          <div class="subheading">Code:</div>
+            {{ course.code}}
+          <div class="subheading">Points:</div>
+            {{ course.points}}
+          <div class="subheading">Level:</div>
+            {{ course.level}}
+          <div class="subheading">Description:</div>
+            {{ course.description}}
+          
+        
+      
+        
+        </v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-card-actions>
+      <router-link :to="{name: 'courses_edit'}">
+      <v-btn
+        outlined
+        rounded
+        text
+        color="white"
+        class="buttonEdit button"
+      >
+       Edit
+      </v-btn>
+      </router-link>
+
+        <v-btn
+        outlined
+        rounded
+        text
+        color="white"
+        class="buttonDelete button"
+      >
+       Delete
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+
+</v-container>
+</div>
 </template>
 
 <script>
@@ -68,3 +144,28 @@ export default {
 
   };
 </script>
+<style scoped>
+.button{
+   margin-left: 20px;
+   margin-bottom: 10px;
+}
+
+.buttonEdit{
+   background: #f9aa33 !important;
+}
+
+.buttonDelete{
+   background: red !important;
+}
+
+.subheading{
+  font-weight: bold;
+  margin-top:10px;
+  margin-bottom:5px;
+  color: black;
+}
+.fontSize{
+  font-size: 20px;
+  margin: 10px;
+}
+</style>
