@@ -57,7 +57,7 @@
       </v-btn>
       </router-link>
 
-        <v-btn
+        <v-btn        
         outlined
         rounded
         text
@@ -72,7 +72,6 @@
     class="ma-3"
      elevation="5"
     outlined
-
   >
     <v-list-item three-line>
       <v-list-item-content>
@@ -80,8 +79,8 @@
          {{ lecturer.name}}'s Enrolments
         </v-list-item-title>
 
-  <v-layout row wrap>
-  <v-flex sm6 lg6 v-for="enrolment in enrolments" :key="enrolment._id">
+  <v-layout row wrap v-if="this.enrolments">
+  <v-flex sm6 lg6  v-for="enrolment in enrolments" :key="enrolment._id">
   
   <v-card 
       elevation="2"
@@ -119,11 +118,13 @@
   </v-flex>
 </v-layout>
 
+
       </v-list-item-content>
     </v-list-item>
 
  
   </v-card>
+
   </v-container>
 </div>
 </template>
