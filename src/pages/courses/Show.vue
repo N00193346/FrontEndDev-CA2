@@ -2,35 +2,6 @@
   <div>
   <v-container class="my-5">
 
-  <!-- <v-layout row wrap>
-  <h1 class="heading">{{ course.title}}</h1>
-  </v-layout>
-
-<v-layout row wrap>
-  <p class="large">ID:</p>{{ course.id}}
-  </v-layout>
-<v-layout row wrap>
-  <h4 class="subheading">Code:</h4>{{ course.code}}
-  </v-layout>
-
-   <v-layout row wrap>
-  <h4 class="subheading">Points:</h4>{{ course.points}}
-  </v-layout>
-
-  <v-layout row wrap>
-  <h4 class="subheading">Level:</h4>{{ course.level}}
-  </v-layout>
-
-
- 
-      <p>
-        {{ course.description}}
-    </p>
-
-    <router-link :to="{name: 'courses_edit'}"><button type="button" class="btn btn-primary">Edit</button></router-link>
-    <button @click="deleteCourse()" type="button" class="btn btn-danger">Delete Course</button>
-   -->
-
     <v-card
     class="ma-3"
      elevation="5"
@@ -53,10 +24,6 @@
             {{ course.level}}
           <div class="subheading">Description:</div>
             {{ course.description}}
-          
-        
-      
-        
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
