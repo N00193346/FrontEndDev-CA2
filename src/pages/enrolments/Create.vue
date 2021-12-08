@@ -1,44 +1,83 @@
 <template>
-    <!-- <v-menu>
-                <v-text-field :value ="form.date" slot ="activator" label="Date" prepend-icon="date_range"></v-text-field>
-                <v-date-picker v-model="form.date"></v-date-picker>
-          </v-menu> -->
-  <b-col>
-    <h2>Create Enrolment</h2>
+<div>
+ <v-container class="my-5">
 
-    <h4>Status</h4>
-    <select required name="status" id="status" v-model="form.status">
-      <option value="">Please pick an option</option>
-      <option value="interested">Interested</option>
-      <option value="assigned">Assigned</option>
-      <option value="associate">Associate</option>
-      <option value="career_break">Career Break</option>
-       </select>
-    <br>
-     <h4>Course</h4>
-    <select required name="course" id="course" v-model="form.course_id">
-      <option v-for="course in courses" :key="course.code" 
-     :value="course.id">{{course.title }}</option
-     >
-    </select>
-    <br>
-     <h4>Lecturer</h4>
-    <select required name="lecturer" id="lecturer" v-model="form.lecturer_id">
-      <option v-for="lecturer in lecturers" :key="lecturer.id" 
-     :value="lecturer.id">{{lecturer.name }}</option
-     >
-    </select>
-     <br>
-      <h4>Date</h4>
-     <input type="date" v-model="form.date" />
-     <br>
-      <h4>Time</h4>
-     <input type="time" v-model="form.time" />
-     <br>
+    <v-card>
+        <v-card-title class="mb-1">
+        <h1>Create Enrolment</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form class="px-3" ref="formR">
+         
+          <!-- Status -->
+          <v-select
+            v-model="form.status"
+            :items="statusItems"
+            prepend-icon="mdi-clipboard-check-outline"
+            item-text="text"
+            item-value="value"
+            :rules="[v => !!v || 'Status is required']"
+            label="Status"
+            required
+          ></v-select>
 
-     <button @click="createEnrolment()">Submit</button>
+          <!-- Course -->
+           <v-select
+            v-model="form.course_id"
+            :items="courses"
+            prepend-icon="folder"
+            :rules="[v => !!v || 'Course is required']"    
+            item-text="title"
+            item-value="id"
+            label="Course"
+            required
+          ></v-select>
+
+            <!-- Lecturer -->
+            <v-select
+            v-model="form.lecturer_id"
+            prepend-icon="mdi-account" 
+            :items="lecturers"
+            :rules="[v => !!v || 'Lecturer is required']"    
+            item-text="name"
+            item-value="id"
+            label="Lecturer"
+            required
+          ></v-select>
+
+          <!-- Date -->
+          <v-menu>
+          <template v-slot:activator="{ on }">
+              <v-text-field :rules="[v => !!v || 'Date is required']"   :value="form.date" label="Date" prepend-icon="mdi-calendar-range" v-on="on"></v-text-field>
+              </template>
+              <v-date-picker v-model="form.date"></v-date-picker>
+          </v-menu>
+
+          <!-- Time -->
+          <v-menu>
+          <template v-slot:activator="{ on }">
+             <v-text-field :rules="[v => !!v || 'Time is required']"     :value="form.time" label="Time" prepend-icon="mdi-clock-outline" v-on="on"></v-text-field>
+             </template>
+              <v-time-picker
+                ampm-in-title
+                  elevation="15"
+                format="ampm"
+                v-model="form.time"
+              ></v-time-picker> 
+          </v-menu>
+
+           <!-- <v-text-field label="Time" v-model="form.time" :rules="[v => !!v || 'Time is required']"   prepend-icon="mdi-clock-outline"></v-text-field> -->
+        
+          <v-btn flat class="secondary mt-3"  @click="submit + createEnrolment()">Create </v-btn>  
+            <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
+            
+        </v-form>
+      </v-card-text>
   
-  </b-col>
+  </v-card>
+
+</v-container>
+</div>
 </template>
 
 <script>
@@ -57,7 +96,16 @@ export default {
         time: "",
       },
       courses: [],
-      lecturers: []
+      lecturers: [],
+      statusItems: [
+        { value: 'interested', text: 'Interested' },
+        { value: 'assigned', text: 'Assigned' },
+        { value: 'associate', text: 'Associate' },
+        { value: 'career_break', text: 'Career Break' }
+      ],
+      courseItems: [
+        { courseName: '', course_id: ''}
+      ]
     }
   },
    mounted() {
@@ -72,7 +120,6 @@ export default {
         axios.post(`https://college-api-mo.herokuapp.com/api/enrolments`,
       {
           status: this.form.status, 
-          
           course_id: this.form.course_id,
           lecturer_id: this.form.lecturer_id,
           date: this.form.date,
@@ -82,13 +129,14 @@ export default {
           headers: {"Authorization" : `Bearer ${token}`}
         }
         )
-            .then(response => {
-              console.log(response.data)
-              })
+          .then(response => {
+            console.log(response.data)
+            this.$router.push({name: 'enrolments_index'})
+            })
             .catch(error => {
-              console.log(error)
-              console.log(error.response.data.message)
-              })
+            console.log(error)
+            console.log("The error is" + error.response.data.errors)
+            })
     },
           getCourses() {
           let token = localStorage.getItem('token')
@@ -100,6 +148,7 @@ export default {
            .then(response => {
                console.log("Courses: "  + response.data.data)
                this.courses = response.data.data
+              //  this.courseItems.courseName = response.data.data.title
            })
            .catch(error => console.log(error))
        },
@@ -115,7 +164,16 @@ export default {
                this.lecturers = response.data.data
            })
            .catch(error => console.log(error))
-       }
+       },
+        clear() {
+        this.$refs.formR.resetValidation(),
+        this.form.status = "",
+        this.form.course_id = "",
+        this.form.lecturer_id = "",
+        this.form.date = "",
+        this.form.time = ""
+        },
+       
    },
   };
 </script>

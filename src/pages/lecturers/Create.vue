@@ -13,11 +13,6 @@
           <v-text-field type="Email" label="Email" v-model="form.email" prepend-icon="mdi-email" :rules="emailRules"></v-text-field>
           <v-text-field type="Number" label="Phone" v-model="form.phone" prepend-icon="mdi-phone" :rules="inputRules"></v-text-field>
 
-          <!-- <v-menu>
-                <v-text-field :value ="form.date" slot ="activator" label="Date" prepend-icon="date_range"></v-text-field>
-                <v-date-picker v-model="form.date"></v-date-picker>
-          </v-menu> -->
-
           <v-btn flat class="secondary mt-3" @click="createLecturer()">Create </v-btn>
           <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
          
@@ -81,6 +76,7 @@ export default {
     }
        },
         clear() {
+        this.$refs.formR.resetValidation()
         this.form.name = '', 
         this.form.address = '',
         this.form.email = '',
