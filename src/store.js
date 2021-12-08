@@ -9,6 +9,7 @@ export default new Vuex.Store({
     loggedIn: false,
     snackbarLecturer: false,
     snackbarCourse: false,
+    snackbarEnrolment: false,
     course: {
       title: "",
       code: "",
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     SET_SNACKBAR_COURSE_STATUS(state, snackbarCourse){
       state.snackbarCourse = snackbarCourse
+    },
+    SET_SNACKBAR_ENROLMENT_STATUS(state, snackbarEnrolment){
+      state.snackbarEnrolment = snackbarEnrolment
     }
   },
   actions: {
@@ -70,6 +74,12 @@ export default new Vuex.Store({
     },
     removeCourseSnackBar(context){
       context.commit("SET_SNACKBAR_COURSE_STATUS", false);
+    },
+    displayEnrolmentSnackBar(context){
+      context.commit("SET_SNACKBAR_ENROLMENT_STATUS", true);
+    },
+    removeEnrolmentSnackBar(context){
+      context.commit("SET_SNACKBAR_ENROLMENT_STATUS", false);
     }
   },
 });

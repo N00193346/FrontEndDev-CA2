@@ -132,6 +132,7 @@ export default {
           .then(response => {
             console.log(response.data)
             this.$router.push({name: 'enrolments_index'})
+            this.displayEnrolmentSB()
             })
             .catch(error => {
             console.log(error)
@@ -173,6 +174,9 @@ export default {
         this.form.date = "",
         this.form.time = ""
         },
+        displayEnrolmentSB(){
+             this.$store.dispatch('displayEnrolmentSnackBar')
+        }
        
    },
   };

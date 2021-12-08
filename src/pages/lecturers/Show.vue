@@ -1,25 +1,6 @@
 <template>
 <div>
   <v-container class="my-5">
-  <!-- <b-col>
-    <h2>Lecturer Profile</h2>
-
-    <p>
-        {{ lecturer.name}}
-    </p>
-      <p>
-        {{ lecturer.name }}
-        <br>
-        {{ lecturer.address }}
-        <br>
-        {{ lecturer.email }}
-        <br>
-        {{ lecturer.phone }}
-    </p>
-    
-     <router-link :to="{name: 'lecturers_edit'}"><button type="button" class="btn btn-primary">Edit</button></router-link>
-    <button @click="deleteLecturer()" type="button" class="btn btn-danger">Delete Lecturer</button>
-  </b-col> -->
    <v-card
     class="ma-3"
      elevation="5"

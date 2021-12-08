@@ -11,6 +11,11 @@
     <v-btn color="secondary" class="ml-3" @click="removeSnackbarCourse()">Close</v-btn>
   </v-snackbar>
 
+    <v-snackbar v-model="$store.state.snackbarEnrolment" color="secondary" :timeout="5000" top >
+    <span>Enrolment added to the database</span>
+    <v-btn color="secondary" class="ml-3" @click="removeSnackbarEnrolment()">Close</v-btn>
+  </v-snackbar>
+
    <v-toolbar flat app clipped-left
       color="primary"
       dark
@@ -90,6 +95,12 @@ export default {
     },
     removeSnackbarCourse(){
       this.$store.dispatch('removeCourseSnackBar')
+    },
+    displaySnackbarEnrolment(){
+      this.$store.dispatch('displayEnrolmentSnackBar')
+    },
+    removeSnackbarEnrolment(){
+      this.$store.dispatch('removeEnrolmentSnackBar')
     }
   }
 };
