@@ -12,6 +12,7 @@
           <v-text-field label="Code" v-model="course.code" prepend-icon="mdi-code-braces" :rules="codeRules"></v-text-field>
           <v-textarea  label="Description" v-model="course.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
           <v-text-field type="number" label="Points" v-model="course.points" prepend-icon="mdi-chart-line" :rules="numberRules"></v-text-field>
+          {{ errors.points }}
           <v-text-field type="number" label="Level" v-model="course.level" prepend-icon="mdi-equalizer" :rules="numberRules"></v-text-field>
           <v-btn flat class="secondary mt-3" @click="editCourse()">Edit </v-btn>  
             <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
@@ -42,6 +43,7 @@ export default {
               points: "",
               level: "",
           },
+          errors: {},
       inputRules: [
         v => v.length > 0 || 'Cannot be empty'
       ],
@@ -104,7 +106,8 @@ export default {
               })
               .catch(error => {
                 console.log(error)
-                console.log(error.response.data.message)
+                console.log(error.response.data.errors)
+                this.errors = error.response.data.errors
               })
     },
      

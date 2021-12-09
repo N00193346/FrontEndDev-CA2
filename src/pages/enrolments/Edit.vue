@@ -1,47 +1,10 @@
 <template>
-  <!-- <b-col>
-    <h2>Edit Enrolment</h2>
-
-    <h4>Status</h4>
-    <select required name="status" id="status" v-model="enrolment.status">
-       <option :value="enrolment.status" selected>{{enrolment.status}}</option>
-      <option value="interested">Interested</option>
-      <option value="assigned">Assigned</option>
-      <option value="associate">Associate</option>
-      <option value="career_break">Career Break</option>
-       </select>
-    <br>
-     <h4>Course</h4>
-    <select required name="course" id="course" v-model="enrolment.course_id">
-      <option :value="enrolment.course_id" selected>{{enrolment.courseTitle}}</option>
-      <option v-for="course in courses" :key="course.code" 
-     :value="course.id">{{course.title }}</option >
-    </select>
-    <br>
-     <h4>Lecturer</h4>
-    <select required name="lecturer" id="lecturer" v-model="enrolment.lecturer_id">
-      <option :value="enrolment.lecturer_id" selected>{{enrolment.lecturerName}}</option>
-      <option v-for="lecturer in lecturers" :key="lecturer.id" 
-     :value="lecturer.id">{{lecturer.name }}</option
-     >
-    </select>
-     <br>
-      <h4>Date</h4>
-     <input type="date" v-model="enrolment.date" />
-     <br>
-      <h4>Time</h4>
-     <input type="time" v-model="enrolment.time" />
-     <br>
-
-     <button @click="editEnrolment()">Submit</button>
-  
-  </b-col> -->
 <div>
  <v-container class="my-5">
 
     <v-card>
         <v-card-title class="mb-1">
-        <h1>Create Enrolment</h1>
+        <h1>Edit Enrolment</h1>
       </v-card-title>
       <v-card-text>
         <v-form class="px-3" ref="formR">

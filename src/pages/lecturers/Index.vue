@@ -60,7 +60,7 @@ export default {
    },
    mounted() {
        this.getData()
-          this.getHeroImage()
+        this.getHeroImage()
    },
    methods: {
        getData() {

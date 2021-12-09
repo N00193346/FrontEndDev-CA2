@@ -173,7 +173,12 @@ export default {
         this.form.time = ""
         },
         displayEnrolmentSB(){
-             this.$store.dispatch('displayEnrolmentSnackBar')
+             this.$store.dispatch('displaySnackBar', {
+               show: true,
+               color: "secondary",
+               message: "Good stuff",
+               timeout: "3000"
+             })
         }
        
    },
