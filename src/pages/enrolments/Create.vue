@@ -103,9 +103,7 @@ export default {
         { value: 'associate', text: 'Associate' },
         { value: 'career_break', text: 'Career Break' }
       ],
-      courseItems: [
-        { courseName: '', course_id: ''}
-      ]
+
     }
   },
    mounted() {
