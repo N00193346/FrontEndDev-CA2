@@ -1,5 +1,5 @@
 <template>
-  <b-col>
+  <!-- <b-col>
     <h2>Create Lecturer</h2>
 
     <h4>Name</h4>
@@ -17,7 +17,31 @@
 
      <button @click="editLecturer()">Submit</button>
   
-  </b-col>
+  </b-col> -->
+
+     <v-container class="my-5">
+
+    <v-card>
+        <v-card-title class="mb-1">
+        <h1>Edit Lecturer</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form class="px-3" ref="formR">
+          <v-text-field label="Name" v-model="lecturer.name" prepend-icon="mdi-account" :rules="inputRules"></v-text-field>
+          <v-text-field label="Address" v-model="lecturer.address" prepend-icon="mdi-home" :rules="inputRules"></v-text-field>
+          <v-text-field type="Email" label="Email" v-model="lecturer.email" prepend-icon="mdi-email" :rules="inputRules"></v-text-field>
+          <v-text-field type="Number" label="Phone" v-model="lecturer.phone" prepend-icon="mdi-phone" :rules="inputRules"></v-text-field>
+
+          <v-btn flat class="secondary mt-3" @click="editLecturer()">Edit </v-btn>
+          <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
+         
+        </v-form>
+      </v-card-text>
+  
+  </v-card>
+
+</v-container>
+
 </template>
 
 <script>
@@ -34,6 +58,10 @@ export default {
         email: "",
         phone: ""
       },
+      inputRules: [
+      v => v.length > 0 || 'Cannot be empty'
+      ],
+
     }
   },
  mounted() {
@@ -75,12 +103,20 @@ export default {
         )
             .then(response => {
               console.log(response.data)
+              this.$router.push({name: 'lecturers_index'})
               })
             .catch(error => {
               console.log(error)
               console.log(error.response.data.message)
               })
-    }
+    },
+      clear() {
+        this.$refs.formR.resetValidation()
+        this.lecturer.name = '', 
+        this.lecturer.address = '',
+        this.lecturer.email = '',
+        this.lecturer.phone = ''
+        },
    },
   };
 </script>

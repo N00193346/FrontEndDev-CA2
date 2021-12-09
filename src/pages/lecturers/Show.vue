@@ -26,7 +26,7 @@
     </v-list-item>
 
     <v-card-actions>
-      <router-link :to="{name: 'courses_edit'}">
+      <router-link :to="{name: 'lecturers_edit'}">
       <v-btn
         outlined
         rounded
@@ -162,8 +162,7 @@ export default {
            })
            .catch(error => {
              console.log(error)
-            //  localStorage.removeItem('token')
-            //  this.$emit('invalid-token')
+  
              })
        },
 
