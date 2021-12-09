@@ -83,6 +83,7 @@ export default {
      
    },
          clear() {
+        this.$refs.formR.resetValidation(),
         this.form.title = '', 
         this.form.code = '',
         this.form.description = '',

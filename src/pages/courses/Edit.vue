@@ -1,25 +1,29 @@
 <template>
-  <b-col>
-    <h2>Create Course</h2>
+<div>
+<v-container class="my-5">
 
-    <h4>Title</h4>
-    <input type="text" v-model="course.title" />
-    <br>
-     <h4>Code</h4>
-     <input type="text" v-model="course.code" />
-     <br>
-      <h4>Description</h4>
-     <input type="text" v-model="course.description" />
-     <br>
-      <h4>Points</h4>
-     <input type="number" v-model="course.points" />
-     <br>
-    <h4>Level</h4>
-     <input type="number" v-model="course.level" />
-     <br>
-     <button @click="editCourse()">Submit</button>
+    <v-card>
+        <v-card-title class="mb-1">
+        <h1>Edit Course</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-form class="px-3" ref="formR">
+          <v-text-field label="Title" v-model="course.title" prepend-icon="folder" :rules="inputRules"></v-text-field>
+          <v-text-field label="Code" v-model="course.code" prepend-icon="mdi-code-braces" :rules="codeRules"></v-text-field>
+          <v-textarea  label="Description" v-model="course.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
+          <v-text-field type="number" label="Points" v-model="course.points" prepend-icon="mdi-chart-line" :rules="numberRules"></v-text-field>
+          <v-text-field type="number" label="Level" v-model="course.level" prepend-icon="mdi-equalizer" :rules="numberRules"></v-text-field>
+          <v-btn flat class="secondary mt-3" @click="editCourse()">Edit </v-btn>  
+            <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
+        </v-form>
+      </v-card-text>
   
-  </b-col>
+  </v-card>
+
+</v-container>
+
+
+</div>
 </template>
 
 <script>
@@ -37,7 +41,15 @@ export default {
               description: "",
               points: "",
               level: "",
-          }
+          },
+      inputRules: [
+        v => v.length > 0 || 'Cannot be empty'
+      ],
+    numberRule: v  => {
+      if (!v.trim()) return true;
+      return 'Cannot be empty';
+    },
+      
       }
        
    },
@@ -86,6 +98,7 @@ export default {
         )
               .then(response => {
                console.log(response.data)
+                 this.$router.push({name: 'courses_index'})
             
           
               })
@@ -93,8 +106,17 @@ export default {
                 console.log(error)
                 console.log(error.response.data.message)
               })
-    }
-   },
+    },
+     
+       clear() {
+      this.$refs.formR.resetValidation(),
+        this.course.title = "",
+        this.course.code = "",
+        this.course.description = "",
+        this.course.points = "",
+        this.course.level = ""
+        },
+   }
 
   };
 </script>
