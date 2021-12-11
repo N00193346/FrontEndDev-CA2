@@ -52,7 +52,7 @@
         
       </v-expansion-panel-header>
       <v-expansion-panel-content>
-           <div class ="d-flex  justify-start">
+           <div class ="d-flex  justify-start mt-n5">
             <v-card-text  >
             <div class="textStyle">Enrolment ID:</div>
             {{enrolment.id}}

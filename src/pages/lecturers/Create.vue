@@ -83,7 +83,12 @@ export default {
         this.form.phone = ''
         },
         displayLecturerSB(){
-             this.$store.dispatch('displayLecturerSnackBar')
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "secondary",
+        message: "Lecturer added to the database",
+        timeout: "4000"
+          })
         }
    },
   };

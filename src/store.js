@@ -72,23 +72,23 @@ export default new Vuex.Store({
     displaySnackBar(context, data){
       context.commit("SET_SNACKBAR_STATUS", data);
     },
-    displayLecturerSnackBar(context){
-      context.commit("SET_SNACKBAR_LECTURER_STATUS", true);
-    },
-    removeLecturerSnackBar(context){
-      context.commit("SET_SNACKBAR_LECTURER_STATUS", false);
-    },
-    displayCourseSnackBar(context){
-      context.commit("SET_SNACKBAR_COURSE_STATUS", true);
-    },
-    removeCourseSnackBar(context){
-      context.commit("SET_SNACKBAR_COURSE_STATUS", false);
-    },
-    displayEnrolmentSnackBar(context){
-      context.commit("SET_SNACKBAR_ENROLMENT_STATUS", true);
-    },
-    removeEnrolmentSnackBar(context){
-      context.commit("SET_SNACKBAR_ENROLMENT_STATUS", false);
-    }
+    // displayLecturerSnackBar(context){
+    //   context.commit("SET_SNACKBAR_LECTURER_STATUS", true);
+    // },
+    // removeLecturerSnackBar(context){
+    //   context.commit("SET_SNACKBAR_LECTURER_STATUS", false);
+    // },
+    // displayCourseSnackBar(context){
+    //   context.commit("SET_SNACKBAR_COURSE_STATUS", true);
+    // },
+    // removeCourseSnackBar(context){
+    //   context.commit("SET_SNACKBAR_COURSE_STATUS", false);
+    // },
+    // displayEnrolmentSnackBar(context){
+    //   context.commit("SET_SNACKBAR_ENROLMENT_STATUS", true);
+    // },
+    // removeEnrolmentSnackBar(context){
+    //   context.commit("SET_SNACKBAR_ENROLMENT_STATUS", false);
+    // }
   },
 });

@@ -103,6 +103,7 @@ export default {
         )
             .then(response => {
               console.log(response.data)
+              this.displayLecturerSB()
               this.$router.push({name: 'lecturers_index'})
               })
             .catch(error => {
@@ -117,6 +118,14 @@ export default {
         this.lecturer.email = '',
         this.lecturer.phone = ''
         },
+        displayLecturerSB(){
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "secondary",
+        message: "Lecturer edited and saved to the database",
+        timeout: "4000"
+          })
+        }
    },
   };
 </script>

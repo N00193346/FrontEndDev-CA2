@@ -176,8 +176,8 @@ export default {
              this.$store.dispatch('displaySnackBar', {
                show: true,
                color: "secondary",
-               message: "Good stuff",
-               timeout: "3000"
+               message: "Enrolment added to the database",
+               timeout: "4000"
              })
         }
        

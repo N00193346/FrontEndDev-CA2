@@ -100,6 +100,7 @@ export default {
         )
               .then(response => {
                console.log(response.data)
+               this.displayCourseSB()
                  this.$router.push({name: 'courses_index'})
             
           
@@ -119,6 +120,14 @@ export default {
         this.course.points = "",
         this.course.level = ""
         },
+        displayCourseSB(){
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "secondary",
+        message: "Course edited and saved to the database",
+        timeout: "4000"
+          })
+        }
    }
 
   };

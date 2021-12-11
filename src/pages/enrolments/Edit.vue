@@ -189,6 +189,7 @@ export default {
         )
             .then(response => {
               console.log(response.data)
+              this.displayEnrolmentSB()
                this.$router.push({name: 'enrolments_index'})
               })
             .catch(error => {
@@ -196,6 +197,14 @@ export default {
               console.log(error.response.data.message)
               })
     },
+           displayEnrolmentSB(){
+             this.$store.dispatch('displaySnackBar', {
+               show: true,
+               color: "secondary",
+               message: "Enrolment edited and saved to the database",
+               timeout: "4000"
+             })
+        }
    },
   };
 </script>

@@ -90,8 +90,13 @@ export default {
         this.form.points = '',
         this.form.level = ''
         },
-     displayCourseSB(){
-             this.$store.dispatch('displayCourseSnackBar')
+        displayCourseSB(){
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "secondary",
+        message: "Course added to the database",
+        timeout: "4000"
+          })
         }
 }
 };
