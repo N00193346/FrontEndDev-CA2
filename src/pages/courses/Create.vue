@@ -13,7 +13,7 @@
           <v-textarea  label="Description" v-model="form.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
           <v-text-field type="number" label="Points" v-model="form.points" prepend-icon="mdi-chart-line" :rules="inputRules"></v-text-field>
           <v-text-field type="number" label="Level" v-model="form.level" prepend-icon="mdi-equalizer" :rules="inputRules"></v-text-field>
-          <v-btn flat class="secondary mt-3" @click="submit + createCourse()">Create </v-btn>  
+          <v-btn flat class="secondary mt-3" @click="createCourse()">Create </v-btn>  
             <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
         </v-form>
       </v-card-text>

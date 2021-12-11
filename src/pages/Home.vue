@@ -11,7 +11,9 @@
    
  
  <div v-if="!loggedIn">
-    <h3>Please Sign in</h3>
+    <br>
+    <h3 class=" mt-3 mb-3">Please Sign in</h3>
+    <br>
       
      <v-form
     ref="form"
@@ -51,59 +53,25 @@
   </div>
     <div v-else>
       
+      <br>
      <h3  class=" mt-3 mb-3">You are signed in </h3>
       <br>
-       <router-link :to="{name: 'courses_create'}">Create Course</router-link>
-       <br>
-       <router-link :to="{name: 'lecturers_create'}">Create Lectuer</router-link>
-          <br>
-       <router-link :to="{name: 'enrolments_create'}">Create Enrolment</router-link>
-
-
-
-       <v-layout row>
-        <v-flex sm4>
- 
-  <router-link style="text-decoration: none; color: inherit;"
-     :to="{name: 'courses_create'}">
-            <v-card   
-            elevation="2"
-            outlined  
-            class=" ma-3">
-            <v-card-title class ="d-flex  justify-center secondary">
-              <div class="textStyle">Create Course</div>
-            </v-card-title>
-          </v-card>
-  </router-link>
-
-<router-link style="text-decoration: none; color: inherit;"
-     :to="{name: 'lecturers_create'}">
-              <v-card   
-            elevation="2"
-            outlined  
-            class=" ma-3">
-            <v-card-title class ="d-flex  justify-center secondary">
-              <div class="textStyle">Create Lecturer</div>
-            </v-card-title>
-          </v-card>
-          </router-link>
-
-<router-link style="text-decoration: none; color: inherit;"
-     :to="{name: 'enrolments_create'}">
-              <v-card   
-            elevation="2"
-            outlined  
-            class=" ma-3">
-            <v-card-title class ="d-flex  justify-center secondary">
-              <div class="textStyle">Create Enrolment</div>
-            </v-card-title>
-          </v-card>
-          </router-link>
-
-        </v-flex>
-     </v-layout>
-
-   
+      
+   <v-layout row wrap>
+  <v-flex sm6 lg4 v-for="button in buttons" :key="button.title">
+    <router-link style="text-decoration: none; color: inherit;"
+     :to="{name: button.routeName}">
+    <v-card   
+    elevation="2"
+    outlined  
+    class="secondary ma-3 d-flex justify-center">
+      <v-card-title>
+        <div class="textStyle ">{{button.title}}</div>
+      </v-card-title>
+    </v-card>
+    </router-link>
+  </v-flex>
+</v-layout>
 
 
     </div> 
@@ -133,6 +101,11 @@ export default {
         password: "secret",
       },
       heroImage: {},
+      buttons: [
+          {title: 'Create Course', routeName: 'courses_create'},
+          {title: 'Create Lecturer', routeName: 'lecturers_create'},
+          {title: 'Create Enrolment', routeName: 'enrolments_create'},
+      ],
   
     }
   },   
@@ -159,3 +132,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.textStyle{
+  font-weight: bold;
+  text-decoration: none;
+ 
+}
+</style>
