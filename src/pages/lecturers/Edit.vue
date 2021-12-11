@@ -28,10 +28,13 @@
       <v-card-text>
         <v-form class="px-3" ref="formR">
           <v-text-field label="Name" v-model="lecturer.name" prepend-icon="mdi-account" :rules="inputRules"></v-text-field>
+              <div class="errorText">{{ errors.name }}</div>
           <v-text-field label="Address" v-model="lecturer.address" prepend-icon="mdi-home" :rules="inputRules"></v-text-field>
+              <div class="errorText">{{ errors.address }}</div>
           <v-text-field type="Email" label="Email" v-model="lecturer.email" prepend-icon="mdi-email" :rules="inputRules"></v-text-field>
+              <div class="errorText">{{ errors.email }}</div>
           <v-text-field type="Number" label="Phone" v-model="lecturer.phone" prepend-icon="mdi-phone" :rules="inputRules"></v-text-field>
-
+              <div class="errorText">{{ errors.phone }}</div>
           <v-btn flat class="secondary mt-3" @click="editLecturer()">Edit </v-btn>
           <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
          
@@ -61,7 +64,7 @@ export default {
       inputRules: [
       v => v.length > 0 || 'Cannot be empty'
       ],
-
+      errors: {}
     }
   },
  mounted() {
@@ -108,7 +111,7 @@ export default {
               })
             .catch(error => {
               console.log(error)
-              console.log(error.response.data.message)
+              this.errors = error.response.data.errors
               })
     },
       clear() {
@@ -129,3 +132,8 @@ export default {
    },
   };
 </script>
+<style scoped>
+.errorText{
+  color: red;
+}
+</style>

@@ -9,9 +9,13 @@
       <v-card-text>
         <v-form class="px-3" ref="formR">
           <v-text-field label="Name" v-model="form.name" prepend-icon="mdi-account" :rules="inputRules"></v-text-field>
+             <div class="errorText">{{ errors.name }}</div>
           <v-text-field label="Address" v-model="form.address" prepend-icon="mdi-home" :rules="inputRules"></v-text-field>
+            <div class="errorText">{{ errors.address }}</div>
           <v-text-field type="Email" label="Email" v-model="form.email" prepend-icon="mdi-email" :rules="emailRules"></v-text-field>
+            <div class="errorText">{{ errors.email }}</div>
           <v-text-field type="Number" label="Phone" v-model="form.phone" prepend-icon="mdi-phone" :rules="inputRules"></v-text-field>
+            <div class="errorText">{{ errors.phone }}</div>
 
           <v-btn flat class="secondary mt-3" @click="createLecturer()">Create </v-btn>
           <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
@@ -22,11 +26,7 @@
   </v-card>
 
 </v-container>
-
-
-
 </template>
-
 <script>
 import axios from 'axios'
 
@@ -44,7 +44,7 @@ export default {
       inputRules: [
         v => v.length > 0 || 'Cannot be empty'
       ],
-
+      errors: {}
     }
   },
 
@@ -71,7 +71,7 @@ export default {
         })
         .catch(error => {
         console.log(error)
-        console.log(error.response.data.message)
+        this.errors = error.response.data.errors
         })
     }
        },
@@ -93,3 +93,8 @@ export default {
    },
   };
 </script>
+<style scoped>
+.errorText{
+  color: red;
+}
+</style>

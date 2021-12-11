@@ -9,10 +9,15 @@
       <v-card-text>
         <v-form class="px-3" ref="formR">
           <v-text-field label="Title" v-model="form.title" prepend-icon="folder" :rules="inputRules"></v-text-field>
+           <div class="errorText">{{ errors.title }}</div>
           <v-text-field label="Code" v-model="form.code" prepend-icon="mdi-code-braces" :rules="codeRules"></v-text-field>
+          <div class="errorText" > {{ errors.code }}</div>
           <v-textarea  label="Description" v-model="form.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
+          <div class="errorText" > {{ errors.description }}</div>
           <v-text-field type="number" label="Points" v-model="form.points" prepend-icon="mdi-chart-line" :rules="inputRules"></v-text-field>
+          <div class="errorText" > {{ errors.points }}</div>
           <v-text-field type="number" label="Level" v-model="form.level" prepend-icon="mdi-equalizer" :rules="inputRules"></v-text-field>
+           <div class="errorText" > {{ errors.level }}</div>
           <v-btn flat class="secondary mt-3" @click="createCourse()">Create </v-btn>  
             <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
         </v-form>
@@ -48,7 +53,8 @@ export default {
         v => v.length > 0 || 'Cannot be empty',
         v => v.length < 6 || 'Code cannot be greater than 5 characters'
 
-      ]
+      ],
+      errors: {}
     }
   },
 
@@ -76,8 +82,8 @@ export default {
           
               })
               .catch(error => {
-                console.log(error)
-                console.log(error.response.data.message)
+              console.log(error)
+              this.errors = error.response.data.errors
               })
     }
      
@@ -101,3 +107,8 @@ export default {
 }
 };
 </script>
+<style scoped>
+.errorText{
+  color: red;
+}
+</style>

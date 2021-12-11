@@ -9,11 +9,15 @@
       <v-card-text>
         <v-form class="px-3" ref="formR">
           <v-text-field label="Title" v-model="course.title" prepend-icon="folder" :rules="inputRules"></v-text-field>
+          <div class="errorText">{{ errors.title }}</div>
           <v-text-field label="Code" v-model="course.code" prepend-icon="mdi-code-braces" :rules="codeRules"></v-text-field>
+          <div class="errorText" > {{ errors.code }}</div>
           <v-textarea  label="Description" v-model="course.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
+          <div class="errorText" > {{ errors.description }}</div>
           <v-text-field type="number" label="Points" v-model="course.points" prepend-icon="mdi-chart-line" :rules="numberRules"></v-text-field>
-          {{ errors.points }}
+          <div class="errorText" > {{ errors.points }}</div>
           <v-text-field type="number" label="Level" v-model="course.level" prepend-icon="mdi-equalizer" :rules="numberRules"></v-text-field>
+          <div class="errorText" > {{ errors.level }}</div>
           <v-btn flat class="secondary mt-3" @click="editCourse()">Edit </v-btn>  
             <v-btn flat class="accent ml-3 mt-3" @click="clear">Clear</v-btn>
         </v-form>
@@ -43,14 +47,21 @@ export default {
               points: "",
               level: "",
           },
-          errors: {},
-      inputRules: [
-        v => v.length > 0 || 'Cannot be empty'
-      ],
-    numberRule: v  => {
-      if (!v.trim()) return true;
-      return 'Cannot be empty';
-    },
+        
+    //   inputRules: [
+    //     v => v.length > 0 || 'Cannot be empty'
+    //   ],
+    // numberRule: v  => {
+    //   if (!v.trim()) return true;
+    //   return 'Cannot be empty';
+    // },
+      errors: {
+          title: "",
+          code: "",
+          description: "",
+          points: "",
+          level: "",
+            },
       
       }
        
@@ -107,7 +118,6 @@ export default {
               })
               .catch(error => {
                 console.log(error)
-                console.log(error.response.data.errors)
                 this.errors = error.response.data.errors
               })
     },
@@ -132,3 +142,8 @@ export default {
 
   };
 </script>
+<style scoped>
+.errorText{
+  color: red;
+}
+</style>

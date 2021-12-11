@@ -20,6 +20,7 @@
             label="Status"
             required
           ></v-select>
+          <div class="errorText">{{ errors.status }}</div>
 
           <!-- Course -->
            <v-select
@@ -32,6 +33,7 @@
             label="Course"
             required
           ></v-select>
+          <div class="errorText">{{ errors.course_id }}</div>
 
             <!-- Lecturer -->
             <v-select
@@ -44,6 +46,7 @@
             label="Lecturer"
             required
           ></v-select>
+           <div class="errorText">{{ errors.lecturer_id }}</div>
 
           <!-- Date -->
           <v-menu>
@@ -52,6 +55,7 @@
               </template>
               <v-date-picker v-model="enrolment.date"></v-date-picker>
           </v-menu>
+          <div class="errorText">{{ errors.date }}</div>
 
           <!-- Time -->
           <v-menu>
@@ -65,6 +69,7 @@
                 v-model="enrolment.time"
               ></v-time-picker> 
           </v-menu>
+           <div class="errorText">{{ errors.time }}</div>
 
           
         
@@ -110,7 +115,7 @@ export default {
         { value: 'associate', text: 'Associate' },
         { value: 'career_break', text: 'Career Break' }
       ],
-
+        errors: {}
     }
   },
    mounted() {
@@ -194,7 +199,7 @@ export default {
               })
             .catch(error => {
               console.log(error)
-              console.log(error.response.data.message)
+              this.errors = error.response.data.errors
               })
     },
            displayEnrolmentSB(){
@@ -208,3 +213,8 @@ export default {
    },
   };
 </script>
+<style scoped>
+.errorText{
+  color: red;
+}
+</style>
