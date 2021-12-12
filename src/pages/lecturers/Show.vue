@@ -49,18 +49,19 @@
       </v-btn>
     </v-card-actions>
   </v-card>
+  
      <v-card
     class="ma-3"
      elevation="5"
     outlined
   >
-    <v-list-item three-line>
+    <v-list-item three-line v-if="this.enrolments.length > 0">
       <v-list-item-content>
         <v-list-item-title class="text-h3 mb-5">
          {{ lecturer.name}}'s Enrolments
         </v-list-item-title>
 
-  <v-layout row wrap v-if="this.enrolments">
+  <v-layout row wrap >
   <v-flex sm6 lg6  v-for="enrolment in enrolments" :key="enrolment._id">
   
   <v-card 
