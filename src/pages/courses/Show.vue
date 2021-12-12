@@ -51,7 +51,7 @@
       >
        Delete
       </v-btn> -->
-      <DeletePopUp :button="this.button" :enrolments="this.enrolments"/>
+      <DeletePopUp :button="this.button" :enrolments="this.enrolments" :type="this.type"/>
        <div class="errorText" > {{ errors}}</div>
     </v-card-actions>
   </v-card>
@@ -131,6 +131,7 @@ export default {
        return {
             course: {},
             enrolments: [],
+            type: "course",
             errors: "",
             button: {
               id: this.$route.params.id,

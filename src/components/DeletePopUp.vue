@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog transition="dialog-bottom-transition" width="600">
+    <v-dialog  width="600">
       <template v-slot:activator="{ on }">
         <v-btn 
         outlined
@@ -9,9 +9,10 @@
         color="white"
         class="buttonDelete button  pa-5" dark v-on="on">Delete</v-btn>
       </template>
+      <template v-slot:default="dialog">
       <v-card>
-        <v-card-title class="headline grey lighten-2" primary-title>{{button.message}}</v-card-title>
-    <v-card-actions class ="d-flex  justify-center"> 
+        <v-card-title class=" error grey " primary-title>{{button.message}}</v-card-title>
+    <v-card-actions class ="d-flex error justify-center"> 
       <v-btn
       @click="dialog.value = false"
         outlined
@@ -24,7 +25,7 @@
       </v-btn>
 
         <v-btn
-        @click="deleteCourse()"
+        @click="deleteItem()"
         outlined
         rounded
         text
@@ -36,6 +37,7 @@
     </v-card-actions>
 
       </v-card>
+      </template>
     </v-dialog>
   </div>
 </template>
@@ -47,6 +49,7 @@ export default {
   props: {
       button: Object,
       enrolments: Array,
+      type: String,
   },
   data() {
        return {
@@ -74,19 +77,21 @@ export default {
 
         }
         },
-       deleteCourse() {
+       deleteItem() {
+         console.log("Type is" + this.type)
+           if (this.enrolments.length > 0) {
          this.deleteEnrolments()
-
+           }
          let token = localStorage.getItem('token')
            axios
-           .delete(`https://college-api-mo.herokuapp.com/api/courses/${this.button.id}`,
+           .delete(`https://college-api-mo.herokuapp.com/api/${this.type}s/${this.button.id}`,
            {
                headers: {"Authorization" : `Bearer ${token}`}
            })
            .then(response => {
                console.log(response)
-                console.log("Course deleted")
-                this.$router.push({name: 'courses_index'})
+                console.log(`${this.type} deleted`)
+                this.$router.push({name: `${this.type}s_index`})
                 this.displayDeleteCourseSB()
                 
                
@@ -101,7 +106,7 @@ export default {
         this.$store.dispatch('displaySnackBar', {
         show: true,
         color: "danger",
-        message: "Course deleted",
+        message: `${this.type} deleted`,
         timeout: "4000"
           })
         }
@@ -136,5 +141,10 @@ export default {
 
 .errorText{
   color: red;
+}
+
+.errorMessage{
+  overflow: hidden;
+  white-space: initial;
 }
 </style>
