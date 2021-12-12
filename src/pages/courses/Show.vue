@@ -35,21 +35,24 @@
         rounded
         text
         color="white"
-        class="buttonEdit button"
+        class="buttonEdit button pa-5"
       >
        Edit
       </v-btn>
       </router-link>
 
-        <v-btn
+        <!-- <v-btn
+        @click="deleteCourse()"
         outlined
         rounded
         text
         color="white"
-        class="buttonDelete button"
+        class="buttonDelete button  pa-5"
       >
        Delete
-      </v-btn>
+      </v-btn> -->
+      <DeletePopUp :button="this.button"/>
+       <div class="errorText" > {{ errors}}</div>
     </v-card-actions>
   </v-card>
 
@@ -59,13 +62,22 @@
 
 <script>
 import axios from 'axios'
+import DeletePopUp from "@/components/DeletePopUp"
 
 export default {
   name: "CoursesShow",
-  components: {},
+  components: {
+    DeletePopUp
+  },
    data() {
        return {
             course: {},
+            errors: "",
+            button: {
+              id: this.$route.params.id,
+              class: "button pa-5",
+              message: "Are you sure you want to delete this course?"
+            }
        }
    },
    mounted() {
@@ -100,13 +112,25 @@ export default {
            .then(response => {
                console.log(response)
                 console.log("Course deleted")
+                this.$router.push({name: 'courses_index'})
+                this.displayDeleteCourseSB()
+                
                
            })
            .catch(error => {
              console.log(error)
-             localStorage.removeItem('token')
+            //  localStorage.removeItem('token')
+            this.errors = error.response.data.status
              })
-       },
+       }, 
+        displayDeleteCourseSB(){
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "danger",
+        message: "Course deleted",
+        timeout: "4000"
+          })
+        }
    },
 
   };
@@ -122,6 +146,7 @@ export default {
 }
 
 .buttonDelete{
+
    background: red !important;
 }
 
@@ -134,5 +159,9 @@ export default {
 .fontSize{
   font-size: 20px;
   margin: 10px;
+}
+
+.errorText{
+  color: red;
 }
 </style>
