@@ -78,8 +78,8 @@ export default {
         }
         },
        deleteItem() {
-         console.log("Type is" + this.type)
-           if (this.enrolments.length > 0) {
+         //If a lecturer or course has enrolments, the enrolments must be deleted first
+          if (this.enrolments.length > 0) {
          this.deleteEnrolments()
            }
          let token = localStorage.getItem('token')

@@ -45,15 +45,8 @@
       </v-btn>
       </router-link>
 
-        <v-btn
-        outlined
-        rounded
-        text
-        color="white"
-        class="buttonDelete button"
-      >
-       Delete
-      </v-btn>
+    <DeletePopUp :button="this.button" :enrolments="0" :type="this.type"/>
+
     </v-card-actions>
   </v-card>
 
@@ -64,13 +57,23 @@
 
 <script>
 import axios from 'axios'
+import DeletePopUp from "@/components/DeletePopUp"
 
 export default {
   name: "EnrolmentsShow",
-  components: {},
+  components: {
+        DeletePopUp
+  },
    data() {
        return {
             enrolment: {},
+            type: "enrolment",
+            errors: "",
+            button: {
+              id: this.$route.params.id,
+              class: "button pa-5",
+              message: "Are you sure you want to delete this enrolment?",
+            }
        }
    },
    mounted() {

@@ -176,8 +176,6 @@ export default {
                  if (this.enrolments.length > 0) {
                  this.button.message = "Deleting this lecturer will delete all enrolments related to the lecturer, are you sure you want to delete it?"
                }
-            
-             
            })
            .catch(error => {
              console.log(error)
