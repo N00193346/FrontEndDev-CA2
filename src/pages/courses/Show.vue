@@ -184,35 +184,6 @@ export default {
   
              })
        },
-        deleteCourse() {
-         let token = localStorage.getItem('token')
-           axios
-           .delete(`https://college-api-mo.herokuapp.com/api/courses/${this.course.id}`,
-           {
-               headers: {"Authorization" : `Bearer ${token}`}
-           })
-           .then(response => {
-               console.log(response)
-                console.log("Course deleted")
-                this.$router.push({name: 'courses_index'})
-                this.displayDeleteCourseSB()
-                
-               
-           })
-           .catch(error => {
-             console.log(error)
-            //  localStorage.removeItem('token')
-            this.errors = error.response.data.status
-             })
-       }, 
-        displayDeleteCourseSB(){
-        this.$store.dispatch('displaySnackBar', {
-        show: true,
-        color: "danger",
-        message: "Course deleted",
-        timeout: "4000"
-          })
-        }
    },
 
   };

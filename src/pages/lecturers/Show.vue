@@ -38,7 +38,7 @@
       </v-btn>
       </router-link>
 
-        <v-btn        
+        <!-- <v-btn        
         outlined
         rounded
         text
@@ -46,7 +46,12 @@
         class="buttonDelete button"
       >
        Delete
-      </v-btn>
+      </v-btn> -->
+
+      <DeletePopUp :button="this.button" :enrolments="this.enrolments" :type="this.type"/>
+      <div class="errorText" > {{ errors}}</div>
+
+
     </v-card-actions>
   </v-card>
   
@@ -113,14 +118,24 @@
 
 <script>
 import axios from 'axios'
+import DeletePopUp from "@/components/DeletePopUp"
 
 export default {
   name: "LecturersShow",
-  components: {},
+  components: {
+    DeletePopUp
+  },
    data() {
        return {
             lecturer: {},
-            enrolments: []
+            enrolments: [],
+            type: "lecturer",
+            errors: "",
+            button: {
+              id: this.$route.params.id,
+              class: "button pa-5",
+              message: "Are you sure you want to delete this lecturer?",
+            }
         
        }
    },
@@ -158,30 +173,15 @@ export default {
            .then(response => {
                console.log(response)
                this.enrolments = response.data.data.enrolments
-               console.log("Enrolments = " + this.enrolments)
+                 if (this.enrolments.length > 0) {
+                 this.button.message = "Deleting this lecturer will delete all enrolments related to the lecturer, are you sure you want to delete it?"
+               }
+            
              
            })
            .catch(error => {
              console.log(error)
   
-             })
-       },
-
-            deleteLecturer() {
-         let token = localStorage.getItem('token')
-           axios
-           .delete(`https://college-api-mo.herokuapp.com/api/lecturers/${this.lecturer.id}`,
-           {
-               headers: {"Authorization" : `Bearer ${token}`}
-           })
-           .then(response => {
-               console.log(response)
-                console.log("Lecturer deleted")
-               
-           })
-           .catch(error => {
-             console.log(error)
-             localStorage.removeItem('token')
              })
        },
    },

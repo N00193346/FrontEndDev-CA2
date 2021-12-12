@@ -92,7 +92,7 @@ export default {
                console.log(response)
                 console.log(`${this.type} deleted`)
                 this.$router.push({name: `${this.type}s_index`})
-                this.displayDeleteCourseSB()
+                this.displayDeletedSB()
                 
                
            })
@@ -102,7 +102,7 @@ export default {
             this.errors = error.response.data.status
              })
        }, 
-         displayDeleteCourseSB(){
+         displayDeletedSB(){
         this.$store.dispatch('displaySnackBar', {
         show: true,
         color: "danger",
