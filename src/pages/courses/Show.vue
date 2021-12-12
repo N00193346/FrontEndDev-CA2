@@ -51,7 +51,7 @@
       >
        Delete
       </v-btn> -->
-      <DeletePopUp :button="this.button"/>
+      <DeletePopUp :button="this.button" :enrolments="this.enrolments"/>
        <div class="errorText" > {{ errors}}</div>
     </v-card-actions>
   </v-card>
@@ -130,12 +130,12 @@ export default {
    data() {
        return {
             course: {},
-             enrolments: [],
+            enrolments: [],
             errors: "",
             button: {
               id: this.$route.params.id,
               class: "button pa-5",
-              message: "Are you sure you want to delete this course?"
+              message: "Are you sure you want to delete this course?",
             }
        }
    },
@@ -172,7 +172,10 @@ export default {
            .then(response => {
                console.log(response)
                this.enrolments = response.data.data.enrolments
-               console.log("Enrolments = " + this.enrolments)
+               if (this.enrolments.length > 0) {
+                 this.button.message = "Deleting this course will delete all enrolments related to the course, are you sure you want to delete it?"
+               }
+        
              
            })
            .catch(error => {

@@ -46,15 +46,37 @@ export default {
   name: "DeletePopUp",
   props: {
       button: Object,
+      enrolments: Array,
   },
   data() {
        return {
-        
             errors: "",
        }
    },
   methods: {
+        deleteEnrolments() {
+          for (var i = 0; i < this.enrolments.length; i++) {
+             let token = localStorage.getItem('token')
+           axios
+           .delete(`https://college-api-mo.herokuapp.com/api/enrolments/${this.enrolments[i].id}`,
+           {
+               headers: {"Authorization" : `Bearer ${token}`}
+           })
+           .then(response => {
+               console.log(response)
+                console.log(`Enrolment ${this.enrolments[i].id} deleted`)
+                           
+           })
+           .catch(error => {
+             console.log(error)
+            this.errors = error.response.data.status
+             })
+
+        }
+        },
        deleteCourse() {
+         this.deleteEnrolments()
+
          let token = localStorage.getItem('token')
            axios
            .delete(`https://college-api-mo.herokuapp.com/api/courses/${this.button.id}`,
@@ -75,6 +97,14 @@ export default {
             this.errors = error.response.data.status
              })
        }, 
+         displayDeleteCourseSB(){
+        this.$store.dispatch('displaySnackBar', {
+        show: true,
+        color: "danger",
+        message: "Course deleted",
+        timeout: "4000"
+          })
+        }
   }
 };
 </script>
