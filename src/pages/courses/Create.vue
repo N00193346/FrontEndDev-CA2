@@ -15,7 +15,7 @@
           <v-textarea  label="Description" v-model="form.description" prepend-icon="edit" :rules="inputRules"></v-textarea>
           <div class="errorText" > {{ errors.description }}</div>
           <v-text-field type="number" label="Points" v-model="form.points" prepend-icon="mdi-chart-line" :rules="inputRules"></v-text-field>
-          <div class="errorText" > {{ errors.points }}</div>
+          <div class="errorText" > {{ errors.points}}</div>
           <v-text-field type="number" label="Level" v-model="form.level" prepend-icon="mdi-equalizer" :rules="inputRules"></v-text-field>
            <div class="errorText" > {{ errors.level }}</div>
           <v-btn flat class="secondary mt-3" @click="createCourse()">Create </v-btn>  

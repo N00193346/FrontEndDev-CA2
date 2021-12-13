@@ -10,7 +10,7 @@
         <v-form class="px-3" ref="formR">
          
           <!-- Status -->
-          <v-select
+          <!-- <v-select
             v-model="form.status"
             :items="statusItems"
             prepend-icon="mdi-clipboard-check-outline"
@@ -19,11 +19,23 @@
             :rules="[v => !!v || 'Status is required']"
             label="Status"
             required
-          ></v-select>
+          ></v-select> -->
+
+          <v-autocomplete
+           clearable
+            v-model="form.status"
+            :items="statusItems"
+            prepend-icon="mdi-clipboard-check-outline"
+            item-text="text"
+            item-value="value"
+            :rules="[v => !!v || 'Status is required']"
+            label="Status"
+            required
+          ></v-autocomplete>
           <div class="errorText">{{ errors.status }}</div>
 
           <!-- Course -->
-           <v-select
+           <!-- <v-select
             v-model="form.course_id"
             :items="courses"
             prepend-icon="folder"
@@ -32,11 +44,33 @@
             item-value="id"
             label="Course"
             required
-          ></v-select>
+          ></v-select> -->
+          <v-autocomplete
+            clearable
+            v-model="form.course_id"
+            :items="courses"
+            prepend-icon="folder"
+            :rules="[v => !!v || 'Course is required']"    
+            item-text="title"
+            item-value="id"
+            label="Course"
+            required
+          ></v-autocomplete>
           <div class="errorText">{{ errors.course_id }}</div>
 
             <!-- Lecturer -->
-            <v-select
+            <v-autocomplete
+             clearable
+             v-model="form.lecturer_id"
+             prepend-icon="mdi-account" 
+             :items="lecturers"
+             :rules="[v => !!v || 'Lecturer is required']"    
+             item-text="name"
+             item-value="id"
+             label="Lecturer"
+             required
+            ></v-autocomplete>
+            <!-- <v-select
             v-model="form.lecturer_id"
             prepend-icon="mdi-account" 
             :items="lecturers"
@@ -45,7 +79,7 @@
             item-value="id"
             label="Lecturer"
             required
-          ></v-select>
+          ></v-select> -->
           <div class="errorText">{{ errors.lecturer_id }}</div>
 
           <!-- Date -->

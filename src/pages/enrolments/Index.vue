@@ -2,17 +2,7 @@
 <div>
   <v-container class="my-5">
   <h1 class="subheading">Enrolments </h1>
-  <!-- <b-col>
-    <h2>Welcome to the Enrolments page</h2>
 
-    <p
-     v-for="enrolment in enrolments"
-     :key="enrolment._id"
-    >
-  
-    <router-link :to="{name: 'enrolments_show', params: {id: enrolment.id}}">{{enrolment.date}}</router-link>
-    </p>
-  </b-col> -->
   <v-layout row >
     <v-img
       :src="heroImage"
@@ -32,14 +22,23 @@
         ></v-text-field>
 </v-layout>
 
+<v-layout row >
+ 
+<v-chip  @click="interested.state = !interested.state" small class="interested ml-3 mr-3">Interested</v-chip>
+
+
+  <v-btn @click="assigned.state = !assigned.state">
+<v-chip small class="assigned ml-3 mr-3">Assigned</v-chip>
+  </v-btn>
+</v-layout>
+
 <v-layout row wrap>
   <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id">
-  
+
   <v-card
       elevation="2"
       outlined  
       class=" ma-3"
-    
   >
      <router-link style="text-decoration: none; color: inherit;"
      :to="{name: 'enrolments_show', params: {id: enrolment.id}}">
@@ -104,13 +103,35 @@ export default {
             enrolments: [],
             heroImage: {},
             searchQuery: "",
+            interested: {
+              state: false,
+              search: "interested",
+            },
+            assigned: {
+              state: false,
+              search: "assigned",
+            },
+         
+            
        }
    },
    computed: {
     filtered(){
+      if (this.interested.state){
+        return this.enrolments.filter(enrolment  => {
+				return enrolment.status.toLowerCase().includes(this.interested.search.toLowerCase())
+			})
+      
+      } else if (this.assigned.state){
+        return this.enrolments.filter(enrolment  => {
+				return enrolment.status.toLowerCase().includes(this.assigned.search.toLowerCase())
+			})
+      }
+      else{
 			return this.enrolments.filter(enrolment  => {
 				return enrolment.course.title.toLowerCase().includes(this.searchQuery.toLowerCase())
 			})
+      }
 		},
   },
    mounted() {
@@ -144,7 +165,12 @@ export default {
     },
     clear(){
       this.searchQuery = ""
-    }
+    },
+     interestedFiltered(){
+			return this.enrolments.filter(enrolment  => {
+				return enrolment.status.toLowerCase().includes(this.interested.toLowerCase())
+			})
+      }
    },
  
 
