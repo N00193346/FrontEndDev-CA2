@@ -4,7 +4,7 @@
   <SnackBar :show="$store.state.snackBarShow" :data="$store.state.snackBarData"/>
 
 
-  <v-snackbar v-model="$store.state.snackbarLecturer" color="secondary" :timeout="5000" top >
+  <!-- <v-snackbar v-model="$store.state.snackbarLecturer" color="secondary" :timeout="5000" top >
     <span>Lecturer added to the database</span>
     <v-btn color="secondary" class="ml-3" @click="removeSnackbarLecturer()">Close</v-btn>
   </v-snackbar>
@@ -17,7 +17,7 @@
     <v-snackbar v-model="$store.state.snackbarEnrolment" color="secondary" :timeout="5000" top >
     <span>Enrolment added to the database</span>
     <v-btn color="secondary" class="ml-3" @click="removeSnackbarEnrolment()">Close</v-btn>
-  </v-snackbar>
+  </v-snackbar> -->
 
    <v-toolbar flat app clipped-left
       color="primary"

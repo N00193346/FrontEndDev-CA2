@@ -12,8 +12,19 @@
     />
 </v-layout>
 
+<v-layout row >
+        <v-text-field
+        class="ml-3 mr-3"
+        v-model="searchQuery"
+        label="Search Lecturers"
+        outlined
+        clearable
+        @click:clear="clear()"
+        ></v-text-field>
+</v-layout>
+
 <v-layout row wrap>
-  <v-flex sm6 lg6 v-for="lecturer in lecturers" :key="lecturer._id">
+  <v-flex sm6 lg6 v-for="lecturer in filtered" :key="lecturer._id">
     <router-link style="text-decoration: none; color: inherit;"
      :to="{name: 'lecturers_show', params: {id: lecturer.id}}">
       <v-card   
@@ -56,12 +67,20 @@ export default {
        return {
             lecturers: [],
             heroImage: {},
+            searchQuery: "",
        }
    },
    mounted() {
        this.getData()
         this.getHeroImage()
    },
+    computed: {
+    filtered(){
+			return this.lecturers.filter(lecturer  => {
+				return lecturer.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+			})
+		},
+  },
    methods: {
        getData() {
           let token = localStorage.getItem('token')
@@ -87,6 +106,9 @@ export default {
 
         .catch((error) => console.log(error));
     },
+     clear(){
+      this.searchQuery = ""
+    }
    },
 
   };

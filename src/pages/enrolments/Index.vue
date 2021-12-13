@@ -21,8 +21,19 @@
     />
 </v-layout>
 
+<v-layout row >
+        <v-text-field
+        class="ml-3 mr-3"
+        v-model="searchQuery"
+        label="Search Enrolments"
+        outlined
+        clearable
+        @click:clear="clear()"
+        ></v-text-field>
+</v-layout>
+
 <v-layout row wrap>
-  <v-flex sm6 lg6 v-for="enrolment in enrolments" :key="enrolment._id">
+  <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id">
   
   <v-card
       elevation="2"
@@ -92,8 +103,16 @@ export default {
          show: false,
             enrolments: [],
             heroImage: {},
+            searchQuery: "",
        }
    },
+   computed: {
+    filtered(){
+			return this.enrolments.filter(enrolment  => {
+				return enrolment.course.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+			})
+		},
+  },
    mounted() {
        this.getData()
       this.getHeroImage()
@@ -123,6 +142,9 @@ export default {
 
         .catch((error) => console.log(error));
     },
+    clear(){
+      this.searchQuery = ""
+    }
    },
  
 

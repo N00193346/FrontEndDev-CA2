@@ -10,11 +10,21 @@
       height="350"
       class=" ma-3"
     />
-    <!-- <ImageHero :heroImage="heroImage"/> -->
+</v-layout>
+
+<v-layout row >
+        <v-text-field
+        class="ml-3 mr-3"
+        v-model="searchQuery"
+        label="Search Courses"
+        outlined
+        clearable
+        @click:clear="clear()"
+        ></v-text-field>
 </v-layout>
 
 <v-layout row wrap>
-  <v-flex sm6 lg6 v-for="course in courses" :key="course._id">
+  <v-flex sm6 lg6 v-for="course in filtered" :key="course._id">
     <router-link style="text-decoration: none; color: inherit;"
      :to="{name: 'courses_show', params: {id: course.id}}">
     <v-card   
@@ -57,13 +67,21 @@ export default {
   components: {
     // ImageHero,
   },
-   data() {
+     data() {
        return {
             courses: [],
             heroImage: {},
-
+            searchQuery: "",
        }
    },
+  computed: {
+    filtered(){
+			return this.courses.filter(course  => {
+				return course.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+			})
+		},
+  },
+
    mounted() {
        this.getData()
        this.getHeroImage()
@@ -94,6 +112,9 @@ export default {
 
         .catch((error) => console.log(error));
     },
+      clear(){
+      this.searchQuery = ""
+    }
    },
 
   };
