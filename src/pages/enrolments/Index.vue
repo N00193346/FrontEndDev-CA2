@@ -1,187 +1,211 @@
 <template>
-<div>
-  <v-container class="my-5">
-  <h1 class="subheading">Enrolments </h1>
+  <div>
+    <v-container class="my-5">
+      <h1 class="subheading">Enrolments</h1>
 
-  <v-layout row >
-    <v-img
-      :src="heroImage"
-      height="350"
-      class=" ma-3"
-    />
-</v-layout>
+      <v-layout row>
+        <v-img :src="heroImage" height="350" class="ma-3" />
+      </v-layout>
 
-<v-layout row >
+      <v-layout row>
         <v-text-field
-        class="ml-3 mr-3"
-        v-model="searchQuery"
-        label="Search Enrolments"
-        outlined
-        clearable
-        @click:clear="clear()"
+          class="ml-3 mr-3"
+          v-model="searchQuery"
+          label="Search Enrolments"
+          outlined
+          clearable
+          @click:clear="clear()"
         ></v-text-field>
-</v-layout>
+      </v-layout>
 
-<v-layout row >
+      <v-layout row class="mb-3">
+        <h5 class="ml-3">Filter:</h5>
+        <br />
+        <v-chip
+          @click="filterInterested()"
+          small
+          opacity=".1"
+          class="interested ml-3 mr-3"
+          >Interested</v-chip
+        >
 
-<v-chip  @click="interested.state = !interested.state" small class="interested ml-3 mr-3">Interested</v-chip>
+        <v-chip @click="filterAssigned()" small class="assigned ml-3 mr-3"
+          >Assigned</v-chip
+        >
 
+        <v-chip @click="filterAssociate()" small class="associate ml-3 mr-3"
+          >Associate</v-chip
+        >
 
-  <v-btn @click="assigned.state = !assigned.state">
-<v-chip small class="assigned ml-3 mr-3">Assigned</v-chip>
-  </v-btn>
-</v-layout>
+        <v-chip @click="filterCareer()" small class="career_break ml-3 mr-3"
+          >Career Break</v-chip
+        >
+      </v-layout>
 
+      <div v-if="filtered.length">
+        <paginate
+          class="paginateW"
+          name="enrolments"
+          :list="filtered"
+          :per="10"
+        >
+          <v-layout row wrap>
+            <v-flex
+              sm6
+              lg6
+              v-for="enrolment in paginated('enrolments')"
+              :key="enrolment._id"
+            >
+              <!-- <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id"> -->
 
-<paginate  class="paginateW" name="enrolments" :list="filtered" :per="10">
-  <v-layout row wrap>
-  <v-flex sm6 lg6 v-for="enrolment in paginated('enrolments')" :key="enrolment._id">
-    <!-- <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id"> -->
+              <v-card elevation="2" outlined class="ma-3">
+                <router-link
+                  style="text-decoration: none; color: inhaerit"
+                  :to="{
+                    name: 'enrolments_show',
+                    params: { id: enrolment.id },
+                  }"
+                >
+                  <v-card-title class="d-flex justify-space-between">
+                    {{ enrolment.course.title }}
+                    <v-chip small :class="`${enrolment.status}`">{{
+                      enrolment.status
+                    }}</v-chip>
+                  </v-card-title>
 
-  <v-card
-      elevation="2"
-      outlined  
-      class=" ma-3"
-  >
-     <router-link style="text-decoration: none; color: inhaerit;"
-     :to="{name: 'enrolments_show', params: {id: enrolment.id}}">
-    <v-card-title  class ="d-flex  justify-space-between">
-      {{enrolment.course.title}}
-      <v-chip small :class="`${enrolment.status}`">{{enrolment.status}}</v-chip>
-    </v-card-title>
+                  <v-card-subtitle>
+                    {{ enrolment.lecturer.name }}
+                  </v-card-subtitle>
 
-    <v-card-subtitle>
-     {{ enrolment.lecturer.name}}
-    </v-card-subtitle>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </router-link>
 
-    <v-card-actions>
-      <v-spacer></v-spacer>
-    </v-card-actions>
-      </router-link>
-
-    <v-expansion-panels>
-    <v-expansion-panel>
-      <v-expansion-panel-header>
-        
-      </v-expansion-panel-header>
-      <v-expansion-panel-content>
-           <div class ="d-flex  justify-start mt-n5">
-            <v-card-text  >
-            <div class="textStyle">Enrolment ID:</div>
-            {{enrolment.id}}
-            </v-card-text>
-            <v-card-text  >
-            <div class="textStyle">Course ID:</div>
-            {{enrolment.course_id}}
-            </v-card-text>
-             <v-card-text >
-            <div class="textStyle">Lecturer ID:</div>
-             {{enrolment.lecturer_id}}
-            </v-card-text>
-            
+                <v-expansion-panels>
+                  <v-expansion-panel>
+                    <v-expansion-panel-header> </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <div class="d-flex justify-start mt-n5">
+                        <v-card-text>
+                          <div class="textStyle">Enrolment ID:</div>
+                          {{ enrolment.id }}
+                        </v-card-text>
+                        <v-card-text>
+                          <div class="textStyle">Course ID:</div>
+                          {{ enrolment.course_id }}
+                        </v-card-text>
+                        <v-card-text>
+                          <div class="textStyle">Lecturer ID:</div>
+                          {{ enrolment.lecturer_id }}
+                        </v-card-text>
+                      </div>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </paginate>
       </div>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
-  </v-card>
 
-  </v-flex>
-
-
-  </v-layout>
-  
-  </paginate>
-
-
-<v-layout row >
-      <paginate-links
-       :v-model="this.page"
-        for="enrolments"
-        style="width: 100%; justify-content: center"
-        class=" d-flex  justify-space-between"
-        :show-step-links="true"
-        :step-links="{
-          prev: '<',
-          next: '>',
-        }"
-      ></paginate-links>
-</v-layout>
-   
-
-</v-container>
-</div>
+      <v-layout row>
+        <paginate-links
+          :v-model="this.page"
+          for="enrolments"
+          style="width: 100%; justify-content: center"
+          class="d-flex justify-space-between"
+          :show-step-links="true"
+          :step-links="{
+            prev: '<',
+            next: '>',
+          }"
+        ></paginate-links>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-const UNSPLASH_URL = "https://api.unsplash.com/search/photos/?client_id=XhqXA2Jig1drfBj96ploqpKdat9N94vn0GPzbrYjwK8&query=class";
+import axios from "axios";
+const UNSPLASH_URL =
+  "https://api.unsplash.com/search/photos/?client_id=XhqXA2Jig1drfBj96ploqpKdat9N94vn0GPzbrYjwK8&query=class";
 
 export default {
   name: "EnrolmentsIndex",
   components: {},
-   data() {
-       return {
-         show: false,
-            enrolments: [],
-            heroImage: {},
-            searchQuery: "",
-            interested: {
-              state: false,
-              search: "interested",
-            },
-            assigned: {
-              state: false,
-              search: "assigned",
-            },
-            paginate: ["enrolments"],
-            page: 1
-          
-
-         
-            
-       }
-   },
-   computed: {
-    filtered(){
-      if (this.interested.state){
-        return this.enrolments.filter(enrolment  => {
-				return enrolment.status.toLowerCase().includes(this.interested.search.toLowerCase())
-			})
-      
-      } else if (this.assigned.state){
-        return this.enrolments.filter(enrolment  => {
-				return enrolment.status.toLowerCase().includes(this.assigned.search.toLowerCase())
-			})
-      }
-      else{
-			return this.enrolments.filter(enrolment  => {
-				return enrolment.course.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-			})
-      }
-		},
+  data() {
+    return {
+      show: false,
+      enrolments: [],
+      heroImage: {},
+      searchQuery: "",
+      paginate: ["enrolments"],
+      page: 1,
+    };
   },
-   mounted() {
-       this.getData()
-      this.getHeroImage()
-   },
-   methods: {
-       getData() {
-          let token = localStorage.getItem('token')
-           axios
-            .get(`https://college-api-mo.herokuapp.com/api/enrolments`,
-           {
-               headers: {"Authorization" : `Bearer ${token}`}
-           })
-           .then(response => {
-               console.log("Enollments response :" + response.data.data)
-               this.enrolments = response.data.data
-           })
-           .catch(error => console.log(error))
-       },
-      getHeroImage() {
+  computed: {
+    filtered() {
+      return this.enrolments.filter((enrolment) => {
+        return (
+          enrolment.status
+            .toLowerCase()
+            .includes(this.searchQuery.toLowerCase()) ||
+          enrolment.course.title
+            .toLowerCase()
+            .includes(this.searchQuery.toLowerCase()) ||
+          enrolment.lecturer.name
+            .toLowerCase()
+            .includes(this.searchQuery.toLowerCase())
+        );
+      });
+
+      // if (this.interested.state) {
+      //   return this.enrolments.filter((enrolment) => {
+      //     return enrolment.status
+      //       .toLowerCase()
+      //       .includes(this.interested.search.toLowerCase());
+      //   });
+      // } else if (this.assigned.state) {
+      //   return this.enrolments.filter((enrolment) => {
+      //     return enrolment.status
+      //       .toLowerCase()
+      //       .includes(this.assigned.search.toLowerCase());
+      //   });
+      // } else {
+      //   return this.enrolments.filter((enrolment) => {
+      //     return (
+      //       enrolment.course.title
+      //         .toLowerCase()
+      //         .includes(this.searchQuery.toLowerCase()) ||
+      //       enrolment.enrolment.status
+      //         .toLowerCase()
+      //         .includes(this.searchQuery.toLowerCase())
+      //     );
+      //   });
+    },
+  },
+  mounted() {
+    this.getData();
+    this.getHeroImage();
+  },
+  methods: {
+    getData() {
+      let token = localStorage.getItem("token");
       axios
-      .get(`${UNSPLASH_URL}`)
-      .then((response) => {
+        .get(`https://college-api-mo.herokuapp.com/api/enrolments`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => {
+          console.log("Enollments response :" + response.data.data);
+          this.enrolments = response.data.data;
+        })
+        .catch((error) => console.log(error));
+    },
+    getHeroImage() {
+      axios
+        .get(`${UNSPLASH_URL}`)
+        .then((response) => {
           console.log(response);
           this.heroImage = response.data.results[0].urls.regular;
           console.log("Image Url is:" + this.heroImage);
@@ -189,42 +213,47 @@ export default {
 
         .catch((error) => console.log(error));
     },
-    clear(){
-      this.searchQuery = ""
+    clear() {
+      this.searchQuery = "";
     },
-     interestedFiltered(){
-			return this.enrolments.filter(enrolment  => {
-				return enrolment.status.toLowerCase().includes(this.interested.toLowerCase())
-			})
-      },
-   },
- 
-
-  };
+    filterInterested() {
+      this.searchQuery = "interested";
+    },
+    filterAssigned() {
+      this.searchQuery = "assigned";
+    },
+    filterAssociate() {
+      this.searchQuery = "associate";
+    },
+    filterCareer() {
+      this.searchQuery = "career_break";
+    },
+  },
+};
 </script>
-<style >
-.textStyle{
+<style>
+.textStyle {
   font-weight: bold;
   text-decoration: none;
 }
 
-.v-chip.interested{
+.v-chip.interested {
   background: #f9aa33 !important;
 }
 
-.v-chip.assigned{
-  background: #82b1ff!important;
+.v-chip.assigned {
+  background: #82b1ff !important;
 }
 
-.v-chip.career_break{
+.v-chip.career_break {
   background: red !important;
 }
 
-.v-chip.associate{
+.v-chip.associate {
   background: #4caf50 !important;
 }
 
-.paginateW{
+.paginateW {
   width: 100%;
   padding-left: 0 !important;
 }
@@ -236,7 +265,7 @@ ul.paginate-links {
   justify-content: center;
   max-width: 100%;
   width: 100%;
-   padding-left: 0 !important;
+  padding-left: 0 !important;
 }
 
 li.number > a,
@@ -253,5 +282,4 @@ li.number > a,
   width: 32px;
   margin: 0.3rem 10px;
 }
-
 </style>
