@@ -111,7 +111,6 @@
 
       <v-layout row>
         <paginate-links
-          :v-model="this.page"
           for="enrolments"
           style="width: 100%; justify-content: center"
           class="d-flex justify-space-between"
