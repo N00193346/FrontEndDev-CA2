@@ -7,67 +7,81 @@
         <v-img :src="heroImage" height="350" class="ma-3" />
       </v-layout>
 
-      <v-layout row>
-        <v-text-field
-          class="ml-3 mr-3"
-          v-model="searchQuery"
-          label="Search Courses"
-          outlined
-          clearable
-          @click:clear="clear()"
-        ></v-text-field>
-      </v-layout>
-
-      <div v-if="filtered.length">
-        <paginate class="paginateW" name="courses" :list="filtered" :per="10">
-          <v-layout row wrap>
-            <v-flex
-              sm6
-              lg6
-              v-for="course in paginated('courses')"
-              :key="course._id"
-            >
-              <router-link
-                style="text-decoration: none; color: inherit"
-                :to="{ name: 'courses_show', params: { id: course.id } }"
-              >
-                <v-card elevation="2" outlined class="ma-3">
-                  <v-card-title>
-                    <div class="textStyle">{{ course.title }}</div>
-                  </v-card-title>
-                  <div class="d-flex justify-space-between">
-                    <v-card-text>
-                      <div class="textStyle">Code:</div>
-                      {{ course.code }}
-                    </v-card-text>
-                    <v-card-text>
-                      <div class="textStyle">Points:</div>
-                      {{ course.points }}
-                    </v-card-text>
-                    <v-card-text>
-                      <div class="textStyle">Level:</div>
-                      {{ course.level }}
-                    </v-card-text>
-                  </div>
-                </v-card>
-              </router-link>
-            </v-flex>
-          </v-layout>
-        </paginate>
+      <div v-if="!loggedIn">
+        <h2 class="mt-2 d-flex justify-center">
+          You need to be logged in to view courses
+        </h2>
+        <br />
+        <h2 class="mt-2 d-flex justify-center">
+          <router-link :to="{ name: 'home' }">
+            <v-btn flat x-large class="secondary mt-3">Log In </v-btn>
+          </router-link>
+        </h2>
       </div>
 
-      <v-layout row>
-        <paginate-links
-          for="courses"
-          style="width: 100%; justify-content: center"
-          class="d-flex justify-space-between"
-          :show-step-links="true"
-          :step-links="{
-            prev: '<',
-            next: '>',
-          }"
-        ></paginate-links>
-      </v-layout>
+      <div v-else>
+        <v-layout row>
+          <v-text-field
+            class="ml-3 mr-3"
+            v-model="searchQuery"
+            label="Search Courses"
+            outlined
+            clearable
+            @click:clear="clear()"
+          ></v-text-field>
+        </v-layout>
+
+        <div v-if="filtered.length">
+          <paginate class="paginateW" name="courses" :list="filtered" :per="10">
+            <v-layout row wrap>
+              <v-flex
+                sm6
+                lg6
+                v-for="course in paginated('courses')"
+                :key="course._id"
+              >
+                <router-link
+                  style="text-decoration: none; color: inherit"
+                  :to="{ name: 'courses_show', params: { id: course.id } }"
+                >
+                  <v-card elevation="2" outlined class="ma-3">
+                    <v-card-title>
+                      <div class="textStyle">{{ course.title }}</div>
+                    </v-card-title>
+                    <div class="d-flex justify-space-between">
+                      <v-card-text>
+                        <div class="textStyle">Code:</div>
+                        {{ course.code }}
+                      </v-card-text>
+                      <v-card-text>
+                        <div class="textStyle">Points:</div>
+                        {{ course.points }}
+                      </v-card-text>
+                      <v-card-text>
+                        <div class="textStyle">Level:</div>
+                        {{ course.level }}
+                      </v-card-text>
+                    </div>
+                  </v-card>
+                </router-link>
+              </v-flex>
+            </v-layout>
+          </paginate>
+        </div>
+
+        <v-layout row>
+          <paginate-links
+            for="courses"
+            style="width: 100%; justify-content: center"
+            class="d-flex justify-space-between"
+            :show-step-links="true"
+            :step-links="{
+              prev: '<',
+              next: '>',
+            }"
+          ></paginate-links>
+        </v-layout>
+      </div>
     </v-container>
   </div>
 </template>
