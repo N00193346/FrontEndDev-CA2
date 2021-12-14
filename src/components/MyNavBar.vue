@@ -89,7 +89,7 @@ export default {
     this.$store.dispatch('logout')
     },
     logIn() {
-     this.$router.push({name: 'login'})
+     this.$router.push({name: 'home'})
     },
     displaySnackbarLecturer(){
       this.$store.dispatch('displayLecturerSnackBar')

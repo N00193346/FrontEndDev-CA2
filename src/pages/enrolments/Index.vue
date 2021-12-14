@@ -23,7 +23,7 @@
 </v-layout>
 
 <v-layout row >
- 
+
 <v-chip  @click="interested.state = !interested.state" small class="interested ml-3 mr-3">Interested</v-chip>
 
 
@@ -32,15 +32,18 @@
   </v-btn>
 </v-layout>
 
-<v-layout row wrap>
-  <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id">
+
+<paginate  class="paginateW" name="enrolments" :list="filtered" :per="10">
+  <v-layout row wrap>
+  <v-flex sm6 lg6 v-for="enrolment in paginated('enrolments')" :key="enrolment._id">
+    <!-- <v-flex sm6 lg6 v-for="enrolment in filtered" :key="enrolment._id"> -->
 
   <v-card
       elevation="2"
       outlined  
       class=" ma-3"
   >
-     <router-link style="text-decoration: none; color: inherit;"
+     <router-link style="text-decoration: none; color: inhaerit;"
      :to="{name: 'enrolments_show', params: {id: enrolment.id}}">
     <v-card-title  class ="d-flex  justify-space-between">
       {{enrolment.course.title}}
@@ -83,8 +86,27 @@
   </v-card>
 
   </v-flex>
-</v-layout>
 
+
+  </v-layout>
+  
+  </paginate>
+
+
+<v-layout row >
+      <paginate-links
+       :v-model="this.page"
+        for="enrolments"
+        style="width: 100%; justify-content: center"
+        class=" d-flex  justify-space-between"
+        :show-step-links="true"
+        :step-links="{
+          prev: '<',
+          next: '>',
+        }"
+      ></paginate-links>
+</v-layout>
+   
 
 </v-container>
 </div>
@@ -111,6 +133,10 @@ export default {
               state: false,
               search: "assigned",
             },
+            paginate: ["enrolments"],
+            page: 1
+          
+
          
             
        }
@@ -170,13 +196,13 @@ export default {
 			return this.enrolments.filter(enrolment  => {
 				return enrolment.status.toLowerCase().includes(this.interested.toLowerCase())
 			})
-      }
+      },
    },
  
 
   };
 </script>
-<style scoped>
+<style >
 .textStyle{
   font-weight: bold;
   text-decoration: none;
@@ -197,4 +223,35 @@ export default {
 .v-chip.associate{
   background: #4caf50 !important;
 }
+
+.paginateW{
+  width: 100%;
+  padding-left: 0 !important;
+}
+
+ul.paginate-links {
+  align-items: center;
+  display: inline-flex;
+  list-style-type: none;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+   padding-left: 0 !important;
+}
+
+li.number > a,
+.left-arrow,
+.right-arrow {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  height: 32px;
+  width: 32px;
+  margin: 0.3rem 10px;
+}
+
 </style>

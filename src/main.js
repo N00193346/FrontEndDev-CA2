@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import VuePaginate from "vue-paginate";
 
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
@@ -14,6 +15,7 @@ import vuetify from './plugins/vuetify'
 Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;
+Vue.use(VuePaginate);
 
 new Vue({
   router,
