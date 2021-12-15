@@ -1,7 +1,14 @@
 <template>
   <div>
     <v-container class="my-5">
-      <h1 class="subheading">Enrolments</h1>
+      <v-layout row class="d-flex justify-space-between">
+        <h1 class="subheading">Enrolments</h1>
+        <router-link :to="{ name: 'enrolments_create' }">
+          <v-btn outlined color="white" class="secondary button pa-2 mt-3 mr-3">
+            Add Enrolment
+          </v-btn>
+        </router-link>
+      </v-layout>
 
       <v-layout row>
         <v-img :src="heroImage" height="350" class="ma-3" />
@@ -175,30 +182,6 @@ export default {
             .includes(this.searchQuery.toLowerCase())
         );
       });
-
-      // if (this.interested.state) {
-      //   return this.enrolments.filter((enrolment) => {
-      //     return enrolment.status
-      //       .toLowerCase()
-      //       .includes(this.interested.search.toLowerCase());
-      //   });
-      // } else if (this.assigned.state) {
-      //   return this.enrolments.filter((enrolment) => {
-      //     return enrolment.status
-      //       .toLowerCase()
-      //       .includes(this.assigned.search.toLowerCase());
-      //   });
-      // } else {
-      //   return this.enrolments.filter((enrolment) => {
-      //     return (
-      //       enrolment.course.title
-      //         .toLowerCase()
-      //         .includes(this.searchQuery.toLowerCase()) ||
-      //       enrolment.enrolment.status
-      //         .toLowerCase()
-      //         .includes(this.searchQuery.toLowerCase())
-      //     );
-      //   });
     },
   },
   mounted() {

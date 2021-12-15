@@ -211,7 +211,7 @@ export default {
     displayEnrolmentSB() {
       this.$store.dispatch("displaySnackBar", {
         show: true,
-        color: "secondary",
+        color: "accent",
         message: "Enrolment edited and saved to the database",
         timeout: "4000",
       });

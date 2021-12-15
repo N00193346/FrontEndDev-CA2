@@ -1,24 +1,4 @@
 <template>
-  <!-- <b-col>
-    <h2>Create Lecturer</h2>
-
-    <h4>Name</h4>
-    <input type="text" v-model="lecturer.name" />
-    <br>
-     <h4>Address</h4>
-     <input type="text" v-model="lecturer.address" />
-     <br>
-      <h4>email</h4>
-     <input type="text" v-model="lecturer.email" />
-     <br>
-      <h4>Phone</h4>
-     <input type="text" v-model="lecturer.phone" />
-     <br>
-
-     <button @click="editLecturer()">Submit</button>
-  
-  </b-col> -->
-
   <v-container class="my-5">
     <v-card>
       <v-card-title class="mb-1">
@@ -143,7 +123,7 @@ export default {
     displayLecturerSB() {
       this.$store.dispatch("displaySnackBar", {
         show: true,
-        color: "secondary",
+        color: "accent",
         message: "Lecturer edited and saved to the database",
         timeout: "4000",
       });
