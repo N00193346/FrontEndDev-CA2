@@ -82,7 +82,7 @@ export default {
           })
           .then((response) => {
             console.log(response.data);
-            this.registerLogin(this.form.email, this.form.password);
+            this.registerLogin(response);
             this.$router.push({ name: "home" });
             this.displayRegisterSB();
           })
