@@ -65,7 +65,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["registerLogin"]),
     clear() {
       this.$refs.formR.resetValidation(),
         (this.form.name = ""),
@@ -82,10 +82,7 @@ export default {
           })
           .then((response) => {
             console.log(response.data);
-            this.login(this.form);
-            // this.response.token = this.token;
-            // this.$localStorage.setItem("token", this.token);
-            // this.$state.loggedIn = true;
+            this.registerLogin(this.form.email, this.form.password);
             this.$router.push({ name: "home" });
             this.displayRegisterSB();
           })

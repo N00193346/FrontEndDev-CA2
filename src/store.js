@@ -62,9 +62,20 @@ export default new Vuex.Store({
           console.log(error.response.data.message);
         });
     },
-    register(context, token) {
-      context.commit("SET_LOGGED_IN_STATUS", true);
-      localStorage.setItem("token", token);
+    registerLogin(context, email, password) {
+      axios
+        .post(`https://college-api-mo.herokuapp.com/api/login`, {
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          context.commit("SET_LOGGED_IN_STATUS", true);
+          localStorage.setItem("token", response.data.token);
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.response.data.message);
+        });
     },
     logout(context) {
       localStorage.removeItem("token");

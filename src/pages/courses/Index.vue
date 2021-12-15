@@ -20,7 +20,7 @@
       </div>
 
       <div v-else>
-        <v-layout row>
+        <v-layout row class="mt-2">
           <v-text-field
             class="ml-3 mr-3"
             v-model="searchQuery"
@@ -88,6 +88,7 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 // import ImageHero from "@/components/ImageHero";
 const UNSPLASH_URL =
   "https://api.unsplash.com/search/photos/?client_id=XhqXA2Jig1drfBj96ploqpKdat9N94vn0GPzbrYjwK8&query=course";
@@ -106,6 +107,8 @@ export default {
     };
   },
   computed: {
+    ...mapState(["loggedIn"]),
+
     filtered() {
       return this.courses.filter((course) => {
         return (
