@@ -20,15 +20,19 @@
         <v-text-field
           v-model="form.password"
           :type="show1 ? 'text' : 'password'"
-          label="E-mail"
+          label="Password"
           required
         ></v-text-field>
 
-        <v-btn color="success" class="mr-4" @click="login(form)">
+        <v-btn color="secondary" class="mr-4" @click="login(form)">
           Sign in
         </v-btn>
 
-        <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
+        <v-btn color="error" class="mr-4" @click="resetForm()">
+          Reset Form
+        </v-btn>
+
+        <v-btn color="accent" class="mr-4" @click="register()"> Register</v-btn>
       </v-form>
     </div>
     <div v-else>
@@ -100,6 +104,13 @@ export default {
         })
 
         .catch((error) => console.log(error));
+    },
+    resetForm() {
+      this.form.email = "";
+      this.form.password = "";
+    },
+    register() {
+      this.$router.push({ name: "register" });
     },
   },
 };

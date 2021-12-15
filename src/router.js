@@ -14,9 +14,9 @@ export default new Router({
       component: Home,
     },
     {
-      path: "/login",
-      name: "login",
-      component: () => import("./pages/Login.vue"),
+      path: "/register",
+      name: "register",
+      component: () => import("./pages/Register.vue"),
     },
     /////COURSES/////
     {
@@ -67,12 +67,12 @@ export default new Router({
       path: "/enrolments",
       name: "enrolments_index",
       component: () => import("./pages/enrolments/Index.vue"),
-      },
-      {
-        path: "/enrolments/create",
-        name: "enrolments_create",
-        component: () => import("./pages/enrolments/Create.vue"),
-      },
+    },
+    {
+      path: "/enrolments/create",
+      name: "enrolments_create",
+      component: () => import("./pages/enrolments/Create.vue"),
+    },
     {
       path: "/enrolments/:id",
       name: "enrolments_show",
@@ -83,6 +83,6 @@ export default new Router({
       name: "enrolments_edit",
       component: () => import("./pages/enrolments/Edit.vue"),
     },
-      ///////////////////
+    ///////////////////
   ],
 });
