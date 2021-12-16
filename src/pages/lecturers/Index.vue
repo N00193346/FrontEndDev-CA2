@@ -4,7 +4,12 @@
       <v-layout row class="d-flex justify-space-between">
         <h1 class="subheading">Lecturers</h1>
         <router-link :to="{ name: 'lecturers_create' }">
-          <v-btn outlined color="white" class="secondary button pa-2 mt-3 mr-3">
+          <v-btn
+            v-if="loggedIn"
+            outlined
+            color="white"
+            class="secondary button pa-2 mt-3 mr-3"
+          >
             Add Lecturer
           </v-btn>
         </router-link>
