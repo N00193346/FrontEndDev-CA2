@@ -128,6 +128,9 @@ export default {
       },
     };
   },
+  created() {
+    document.title = "Lecturer Show";
+  },
   mounted() {
     this.getLecturer();
     this.getEnrolments();

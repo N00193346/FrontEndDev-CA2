@@ -123,6 +123,9 @@ export default {
       errors: {},
     };
   },
+  created() {
+    document.title = "Enrolment Edit";
+  },
   mounted() {
     this.getEnrolment();
     this.getCourses();

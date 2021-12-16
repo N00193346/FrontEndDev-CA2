@@ -118,6 +118,9 @@ export default {
       paginate: ["courses"],
     };
   },
+  created() {
+    document.title = "Course Index";
+  },
   computed: {
     ...mapState(["loggedIn"]),
 

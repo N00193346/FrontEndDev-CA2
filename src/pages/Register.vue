@@ -60,6 +60,9 @@ export default {
       inputRules: [(v) => v.length > 0 || "Cannot be empty"],
     };
   },
+  created() {
+    document.title = "Register";
+  },
   computed: {
     ...mapState(["loggedIn"]),
   },

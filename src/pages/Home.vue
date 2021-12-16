@@ -88,6 +88,9 @@ export default {
   mounted() {
     this.getHeroImage();
   },
+  created() {
+    document.title = "Home";
+  },
   computed: {
     ...mapState(["loggedIn"]),
   },

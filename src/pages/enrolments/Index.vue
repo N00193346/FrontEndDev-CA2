@@ -170,6 +170,9 @@ export default {
       page: 1,
     };
   },
+  created() {
+    document.title = "Enrolment Index";
+  },
   computed: {
     ...mapState(["loggedIn"]),
 

@@ -64,6 +64,9 @@ export default {
       errors: {},
     };
   },
+  created() {
+    document.title = "Lecturer Create";
+  },
 
   methods: {
     createLecturer() {

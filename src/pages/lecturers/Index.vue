@@ -117,6 +117,9 @@ export default {
       paginate: ["lecturers"],
     };
   },
+  created() {
+    document.title = "Lecturer Index";
+  },
   mounted() {
     this.getData();
     this.getHeroImage();

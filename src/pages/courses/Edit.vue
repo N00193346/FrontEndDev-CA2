@@ -91,6 +91,9 @@ export default {
   mounted() {
     this.getCourse(this.$route.params.id);
   },
+  created() {
+    document.title = "Course Edit";
+  },
 
   methods: {
     getCourse() {

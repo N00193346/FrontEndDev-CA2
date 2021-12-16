@@ -131,6 +131,9 @@ export default {
       },
     };
   },
+  created() {
+    document.title = "Course Show";
+  },
   mounted() {
     this.getCourse();
     this.getEnrolments();

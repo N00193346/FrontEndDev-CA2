@@ -66,6 +66,9 @@ export default {
   mounted() {
     this.getLecturer();
   },
+  created() {
+    document.title = "Lecturer Edit";
+  },
   methods: {
     getLecturer() {
       let token = localStorage.getItem("token");
